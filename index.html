@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>European Windows & Doors in New Jersey - 25-Year Warranty | EuroDwell</title>
+<meta name="description" content="European tilt-and-turn windows and doors supplied direct from EU factories to US projects. 25-year warranty, showroom in Linden NJ, installation arranged in the NY/NJ metro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* EuroDwell prototype - shared design tokens & base
+   Направление: «Engineered European» - архитектурная редактура.
+   Fraunces (display) + Instrument Sans (body). Тёплая нейтраль + глубокий бордо. */
+
+:root{
+  /* Spacing - 8pt */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s6:24px;
+  --s8:32px; --s12:48px; --s16:64px; --s20:80px; --s24:96px; --s32:128px;
+
+  /* Type */
+  --f-head:"Fraunces",Georgia,serif;
+  --f-body:"Instrument Sans",-apple-system,Segoe UI,sans-serif;
+  --fs-display:clamp(38px,6vw,68px);
+  --fs-h2:clamp(28px,3.4vw,42px);
+  --fs-h3:clamp(20px,2vw,27px);
+  --fs-lead:clamp(17px,1.4vw,20px);
+  --fs-body:17px; --fs-small:14px; --fs-eyebrow:12px;
+
+  /* Color */
+  --canvas:#FBFAF7;
+  --surface:#F2EFE9;
+  --surface2:#E9E5DB;
+  --ink:#16150F;
+  --ink2:#5A574C;
+  --line:#DFDACE;
+  --accent:#8C2F39;
+  --accent2:#73242C;
+  --dark:#17170F;
+  --dark2:#22221A;
+  --ok:#2E7D5B;
+  --err:#B3261E;
+
+  --r-sm:4px; --r-md:10px; --r-full:999px;
+  --sh-sm:0 1px 2px rgba(22,21,15,.05),0 1px 3px rgba(22,21,15,.08);
+  --sh-md:0 4px 14px rgba(22,21,15,.08),0 2px 4px rgba(22,21,15,.05);
+  --sh-lg:0 18px 44px rgba(22,21,15,.16);
+
+  --container:1240px;
+  --header-h:72px;
+  --dur:250ms; --dur-fast:150ms;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--canvas);color:var(--ink);
+  font-family:var(--f-body);font-size:var(--fs-body);line-height:1.6;
+  font-feature-settings:"ss01","cv05";
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--f-head);font-weight:600;margin:0;letter-spacing:-.02em;line-height:1.1}
+h1{font-size:var(--fs-display);letter-spacing:-.03em;font-variation-settings:"SOFT" 0,"WONK" 1,"opsz" 100}
+h2{font-size:var(--fs-h2);font-variation-settings:"opsz" 60}
+h3{font-size:var(--fs-h3);font-variation-settings:"opsz" 30}
+p{margin:0 0 var(--s4)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+::selection{background:var(--accent);color:#fff}
+
+.wrap{max-width:var(--container);margin-inline:auto;padding-inline:var(--s6)}
+.sec{padding-block:var(--s24)}
+.sec--tight{padding-block:var(--s16)}
+h1,h2,h3{scroll-margin-top:calc(var(--header-h) + 24px)}
+
+.eyebrow{
+  font-size:var(--fs-eyebrow);letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;color:var(--ink2);margin:0 0 var(--s3)
+}
+.lead{font-size:var(--fs-lead);color:var(--ink2);max-width:62ch}
+.muted{color:var(--ink2)}
+.small{font-size:var(--fs-small)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;min-width:180px;padding:0 26px;border:0;cursor:pointer;
+  font-family:var(--f-body);font-size:16px;font-weight:600;letter-spacing:-.01em;
+  border-radius:var(--r-sm);transition:transform var(--dur-fast) var(--ease),
+    background var(--dur-fast),box-shadow var(--dur-fast);text-align:center
+}
+.btn:active{transform:translateY(1px)}
+.btn--primary{
+  background:linear-gradient(180deg,#96343E,#8C2F39 55%,#842B34);color:#fff;
+  box-shadow:0 4px 16px rgba(140,47,57,.28)
+}
+.btn--primary:hover{background:var(--accent2);box-shadow:0 6px 20px rgba(140,47,57,.34);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--canvas)}
+.btn--onimg{
+  background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.55);
+  backdrop-filter:blur(10px)
+}
+.btn--onimg:hover{background:rgba(255,255,255,.22)}
+.btn--sm{min-height:42px;min-width:0;padding:0 18px;font-size:14px}
+.btn--full{width:100%}
+
+.tlink{
+  display:inline-flex;align-items:center;gap:8px;font-weight:600;
+  color:var(--accent);border-bottom:1px solid rgba(140,47,57,.3);padding-bottom:2px;
+  transition:border-color var(--dur-fast),gap var(--dur-fast)
+}
+.tlink:hover{border-color:var(--accent);gap:12px}
+
+/* ---------- Header ---------- */
+.geobar{
+  background:var(--dark);color:rgba(255,255,255,.72);font-size:13px;
+  padding:9px 0;letter-spacing:.01em
+}
+.geobar .wrap{display:flex;gap:var(--s6);justify-content:center;flex-wrap:wrap;text-align:center}
+.geobar b{color:#fff;font-weight:600}
+
+.hdr{
+  position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:rgba(251,250,247,.82);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid var(--line)
+}
+.hdr__in{display:flex;align-items:center;gap:var(--s8);height:100%}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--f-head);font-weight:600;
+  font-size:22px;letter-spacing:-.02em;flex-shrink:0}
+.logo svg{flex-shrink:0}
+.logo b{color:var(--accent)}
+.nav{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav a{font-size:15px;font-weight:500;position:relative;padding:6px 0;color:var(--ink);white-space:nowrap}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;
+  background:var(--accent);transition:right var(--dur) var(--ease)}
+.nav a:hover::after,.nav a[aria-current]::after{right:0}
+.nav .has-cart{display:inline-flex;align-items:center;gap:6px}
+.hdr__act{display:flex;align-items:center;gap:var(--s4);flex-shrink:0}
+.tel{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;white-space:nowrap}
+.tel svg{color:var(--accent)}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;
+  background:none;border:1px solid var(--line);border-radius:var(--r-sm);cursor:pointer}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:min(84vh,760px);display:flex;align-items:flex-end;
+  overflow:hidden;background:var(--dark)}
+.hero__bg{position:absolute;inset:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover}
+.hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(12,12,8,.86) 0%,rgba(12,12,8,.62) 42%,rgba(12,12,8,.15) 78%),
+             linear-gradient(0deg,rgba(12,12,8,.55),transparent 45%)
+}
+.hero__in{position:relative;z-index:2;color:#fff;padding-block:var(--s24) var(--s12);width:100%}
+.hero h1{max-width:19ch;color:#fff;margin-bottom:var(--s6)}
+.hero__sub{max-width:56ch;font-size:var(--fs-lead);color:rgba(255,255,255,.82);margin-bottom:var(--s8)}
+.hero__cta{display:flex;gap:var(--s4);flex-wrap:wrap;align-items:center}
+
+/* ---------- Trust bar ---------- */
+.trust{border-block:1px solid var(--line);background:var(--surface)}
+.trust__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s6);padding-block:var(--s8)}
+.trust__i{display:flex;gap:14px;align-items:flex-start}
+.trust__i svg{flex-shrink:0;color:var(--accent);margin-top:2px}
+.trust__v{font-family:var(--f-head);font-size:21px;font-weight:600;line-height:1.15;display:block;
+  font-variation-settings:"opsz" 20}
+.trust__l{font-size:13.5px;color:var(--ink2);line-height:1.4}
+
+/* ---------- Section head ---------- */
+.shead{max-width:70ch;margin-bottom:var(--s12)}
+.shead h2{margin-bottom:var(--s4)}
+
+/* ---------- Cards / grids ---------- */
+.grid{display:grid;gap:var(--s6)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s6)}
+
+/* Product tile - исправленный оверлей: во всю ширину + тёмный градиент */
+.tile{
+  position:relative;display:block;border-radius:var(--r-md);overflow:hidden;
+  aspect-ratio:4/3;background:var(--surface2);
+  transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)
+}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 500ms var(--ease)}
+.tile__ov{
+  position:absolute;inset:auto 0 0 0;padding:var(--s6);width:100%;
+  background:linear-gradient(to top,rgba(14,14,9,.86),rgba(14,14,9,.45) 55%,transparent);
+  color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s4)
+}
+.tile__t{font-family:var(--f-head);font-size:23px;font-weight:600;line-height:1.15;
+  font-variation-settings:"opsz" 24}
+.tile__m{font-size:13px;color:rgba(255,255,255,.72);margin-top:5px}
+.tile__ar{flex-shrink:0;transition:transform var(--dur) var(--ease)}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.tile:hover img{transform:scale(1.04)}
+.tile:hover .tile__ar{transform:translateX(5px)}
+.tile__badge{
+  position:absolute;top:var(--s4);right:var(--s4);z-index:2;
+  background:rgba(255,255,255,.94);color:var(--ink);font-size:11.5px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:var(--r-full)
+}
+
+/* ---------- Dark section ---------- */
+.dark{background:var(--dark);color:#F4F2EC;position:relative;overflow:hidden}
+.dark::before{
+  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:radial-gradient(circle at 18% 12%,rgba(140,47,57,.22),transparent 45%),
+                   radial-gradient(circle at 84% 78%,rgba(90,110,120,.14),transparent 50%)
+}
+.dark .wrap{position:relative;z-index:1}
+.dark h2,.dark h3{color:#fff}
+.dark .lead,.dark .muted{color:rgba(244,242,236,.72)}
+.dark .eyebrow{color:rgba(244,242,236,.55)}
+
+/* ---------- Comparison table ---------- */
+.cmp{width:100%;border-collapse:collapse;font-size:15.5px}
+.cmp th,.cmp td{padding:15px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{font-family:var(--f-body);font-size:13px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink2);font-weight:600;border-bottom:1px solid var(--ink)}
+.cmp th:first-child{width:23%;font-weight:600;color:var(--ink)}
+.cmp .col-eu{background:var(--surface);border-left:3px solid var(--accent)}
+.cmp thead .col-eu{color:var(--ink);font-weight:700}
+.cmp tbody .col-eu{font-weight:600}
+.cmp .win{color:var(--accent)}
+
+/* ---------- Steps ---------- */
+.steps{counter-reset:st;display:grid;gap:var(--s8)}
+.step{display:grid;grid-template-columns:auto 1fr;gap:var(--s6);align-items:start}
+.step__n{
+  counter-increment:st;width:46px;height:46px;border-radius:var(--r-full);
+  border:1px solid var(--line);display:grid;place-items:center;
+  font-family:var(--f-head);font-size:19px;font-weight:600;flex-shrink:0
+}
+.step__n::before{content:counter(st)}
+.dark .step__n{border-color:rgba(255,255,255,.28)}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--line)}
+.faq__i{border-bottom:1px solid var(--line)}
+.faq__q{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  padding:var(--s6) 44px var(--s6) 0;position:relative;
+  font-family:var(--f-head);font-size:20px;font-weight:600;color:var(--ink);
+  font-variation-settings:"opsz" 24;letter-spacing:-.01em
+}
+.faq__q::after{
+  content:"";position:absolute;right:8px;top:50%;width:13px;height:13px;
+  border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  transform:translateY(-70%) rotate(45deg);transition:transform var(--dur) var(--ease)
+}
+.faq__i[open] .faq__q::after{transform:translateY(-30%) rotate(-135deg)}
+.faq__a{overflow:hidden;height:0;transition:height var(--dur) var(--ease)}
+.faq__a>div{padding-bottom:var(--s6);max-width:76ch;color:var(--ink2)}
+
+/* ---------- Form ---------- */
+.form{display:grid;gap:var(--s4)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--ink2)}
+.field label .req{color:var(--accent)}
+.field input,.field textarea{
+  height:52px;padding:0 16px;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:#fff;font-family:var(--f-body);font-size:16px;color:var(--ink);
+  box-shadow:inset 0 1px 2px rgba(22,21,15,.04);transition:border-color var(--dur-fast),box-shadow var(--dur-fast)
+}
+.field textarea{height:auto;min-height:104px;padding:14px 16px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus{
+  outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(140,47,57,.13)
+}
+.field .hint{font-size:13px;color:var(--ink2)}
+.field .err{font-size:13px;color:var(--err);display:none;align-items:center;gap:6px}
+.field.is-err input,.field.is-err textarea{border-color:var(--err)}
+.field.is-err .err{display:flex}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.form__note{font-size:13.5px;color:var(--ink2)}
+.form__alt{font-size:14.5px;color:var(--ink2);border-top:1px solid var(--line);padding-top:var(--s4);margin-top:var(--s2)}
+.filedrop{
+  border:1px dashed var(--line);border-radius:var(--r-sm);padding:var(--s4);
+  background:var(--canvas);cursor:pointer;display:flex;align-items:center;gap:12px;
+  font-size:14.5px;color:var(--ink2);transition:border-color var(--dur-fast),background var(--dur-fast)
+}
+.filedrop:hover{border-color:var(--accent);background:#fff}
+.filedrop input{display:none}
+.formdone{display:none;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--ok);border-radius:var(--r-md);padding:var(--s8)}
+.formdone h3{margin-bottom:var(--s3)}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity 600ms var(--ease),transform 600ms var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Mobile sticky ---------- */
+.msticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:10px;padding:10px 12px;
+  background:rgba(251,250,247,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line)
+}
+.msticky .btn{flex:1;min-width:0;min-height:50px}
+
+/* ---------- Footer ---------- */
+.ftr{background:var(--dark);color:rgba(244,242,236,.72);padding-block:var(--s20) var(--s8);font-size:15px}
+.ftr a:hover{color:#fff}
+.ftr__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:var(--s8)}
+.ftr h4{color:#fff;font-family:var(--f-body);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:var(--s4);font-weight:600}
+.ftr ul{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.ftr__bot{border-top:1px solid rgba(255,255,255,.1);margin-top:var(--s12);padding-top:var(--s6);
+  display:flex;justify-content:space-between;gap:var(--s6);flex-wrap:wrap;font-size:13.5px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .nav{display:none}
+  .burger{display:flex}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .ftr__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  :root{--header-h:60px;--fs-body:16.5px}
+  .sec{padding-block:var(--s16)}
+  .g3,.g2{grid-template-columns:1fr}
+  .trust__grid{grid-template-columns:1fr 1fr;gap:var(--s4);padding-block:var(--s6)}
+  .tel span{display:none}
+  .hdr__act .btn{display:none}
+  .msticky{display:flex}
+  body{padding-bottom:72px}
+  .hero{min-height:auto}
+  .hero__in{padding-block:var(--s16) var(--s12)}
+  .hero h1{max-width:none}
+  .btn{width:100%}
+  .hero__cta .btn{width:100%}
+  .geobar .wrap{gap:var(--s3);font-size:12px}
+  .form__row{grid-template-columns:1fr}
+  .cmp{font-size:14.5px}
+  .cmp th,.cmp td{padding:12px 12px}
+  .cmp th:first-child{width:34%}
+}
+
+/* EuroDwell prototype - блочные компоненты страниц */
+
+.skiplink{
+  position:absolute;left:-9999px;top:0;z-index:200;background:var(--accent);color:#fff;
+  padding:12px 18px;border-radius:0 0 var(--r-sm) 0;font-weight:600
+}
+.skiplink:focus{left:0}
+
+/* ── Развилка аудиторий ── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.split__c{
+  display:block;padding:var(--s8);border:1px solid var(--line);border-radius:var(--r-md);
+  background:#fff;transition:border-color var(--dur-fast),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)
+}
+.split__c h3{margin:0 0 var(--s3)}
+.split__c:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--sh-md)}
+
+/* ── Механизм: сигнатурная схема ── */
+.mech{
+  background:var(--dark2);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);
+  padding:var(--s8);position:relative;overflow:hidden
+}
+.mech::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 44px)
+}
+.mech__stage{position:relative;z-index:1}
+.mech__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+.mech__cell{margin:0;padding:var(--s6);border-radius:var(--r-sm);background:rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.07)}
+.mech__cell--eu{background:rgba(140,47,57,.11);border-color:rgba(140,47,57,.34)}
+.mech__cap{
+  display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;color:rgba(244,242,236,.75);margin-bottom:var(--s4)
+}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot--us{background:#E0655F}.dot--eu{background:#7FBF9A}
+.mech__svg{width:100%;height:auto;display:block}
+.mech__lbl{font-family:var(--f-body);font-size:9.5px;fill:rgba(244,242,236,.6);letter-spacing:.06em;text-transform:uppercase}
+.mech__lbl--warn{fill:#E0655F}.mech__lbl--ok{fill:#7FBF9A}
+.mech__note{font-size:14px;color:rgba(244,242,236,.66);margin:var(--s4) 0 0;line-height:1.5}
+.mech__note em{color:#fff;font-style:normal;font-weight:600}
+.mech__ctl{display:flex;align-items:center;gap:var(--s6);margin-top:var(--s6);flex-wrap:wrap}
+.mech__hint{max-width:52ch;margin:0}
+
+/* анимация утечки воздуха (US) */
+.air{opacity:0}
+.mech.play .air{animation:leak 2.6s linear infinite}
+.mech.play .a2{animation-delay:.5s}
+.mech.play .a3{animation-delay:1s}
+@keyframes leak{0%{opacity:0;transform:translateX(10px)}15%{opacity:1}70%{opacity:.9}100%{opacity:0;transform:translateX(-16px)}}
+
+/* прижим створки (EU) */
+.sash,.gk,.cam__rot,.pullarrow{transform-box:fill-box}
+.sash{transform-origin:center;transition:transform 900ms var(--ease)}
+.gk{transform-origin:left center;transition:transform 900ms var(--ease)}
+.cam__rot{transform-origin:center;transition:transform 900ms var(--ease)}
+.sealmark{opacity:0;transition:opacity 450ms}
+.pullarrow{opacity:1;transition:opacity 450ms}
+.mech.clamped .sash{transform:translateX(-13px)}
+.mech.clamped .gk{transform:scaleX(.45)}
+.mech.clamped .cam__rot{transform:rotate(90deg)}
+.mech.clamped .sealmark{opacity:1;transition-delay:280ms}
+.mech.clamped .pullarrow{opacity:0}
+
+/* ── 4 следствия ── */
+.why__i{border-top:1px solid rgba(255,255,255,.16);padding-top:var(--s5,20px)}
+.why__n{font-family:var(--f-head);font-size:13px;font-weight:600;color:var(--accent);
+  letter-spacing:.1em;display:block;margin-bottom:var(--s3);filter:brightness(1.6)}
+.why__i h3{font-size:20px;margin-bottom:var(--s3)}
+.why__i p{margin:0}
+
+/* ── Плитки категорий ── */
+#tiles{grid-auto-rows:1fr}
+
+/* ── Кейсы ── */
+.cs{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+  display:flex;flex-direction:column;transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)}
+.cs:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.cs__img{aspect-ratio:16/9;background:var(--surface2);position:relative;overflow:hidden}
+.cs__img img{width:100%;height:100%;object-fit:cover}
+.cs__ba{position:absolute;bottom:10px;left:10px;background:rgba(14,14,9,.82);color:#fff;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:5px 9px;border-radius:var(--r-full)}
+.cs__b{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s3);flex:1}
+.cs__meta{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.cs__facts{font-size:14px;color:var(--ink2);margin:0}
+.cs__b .tlink{margin-top:auto;align-self:flex-start}
+
+/* ── Консультация ── */
+.cons{display:grid;grid-template-columns:.95fr 1.05fr;gap:var(--s16);align-items:start}
+
+/* ── Гарантия ── */
+.warr{display:grid;grid-template-columns:1fr auto;gap:var(--s16);align-items:center}
+.warr__big{display:flex;align-items:baseline;gap:10px;color:#fff;opacity:.94}
+.warr__big span{font-family:var(--f-head);font-size:clamp(88px,13vw,168px);font-weight:600;line-height:.8;
+  letter-spacing:-.05em;font-variation-settings:"opsz" 144}
+.warr__big small{font-family:var(--f-body);font-size:16px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.6)}
+
+/* ── Логотипы систем ── */
+.logos{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s8);align-items:center}
+.logos img{
+  max-height:30px;width:auto;margin:0 auto;filter:grayscale(1) opacity(.5);
+  transition:filter var(--dur-fast)
+}
+.logos img:hover{filter:grayscale(0) opacity(1)}
+
+/* ── FAQ layout ── */
+.faqwrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--s16);align-items:start}
+
+/* ── Форма ── */
+.quote{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s16);align-items:start}
+.quote__alt{margin-top:var(--s8);padding-top:var(--s6);border-top:1px solid var(--line)}
+.ticks{list-style:none;padding:0;margin:var(--s6) 0 0;display:grid;gap:11px}
+.ticks li{position:relative;padding-left:28px;font-size:15px;color:var(--ink2);line-height:1.5}
+.ticks li::before{
+  content:"";position:absolute;left:2px;top:6px;width:12px;height:7px;
+  border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)
+}
+
+/* ── Для подрядчиков ── */
+.bld{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s16);align-items:start}
+.bld__list{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.bld__list li{padding:var(--s4) 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink2)}
+.bld__list li:first-child{border-top:1px solid var(--line)}
+.bld__list b{color:var(--ink)}
+
+/* ═══ КАТЕГОРИЯ ═══ */
+.crumbs{font-size:13.5px;color:var(--ink2);padding-block:var(--s4)}
+.crumbs a:hover{color:var(--accent)}
+.crumbs span{opacity:.5;margin-inline:7px}
+
+.chero{position:relative;min-height:min(62vh,560px);display:flex;align-items:flex-end;
+  overflow:hidden;background:var(--dark)}
+.chero__bg{position:absolute;inset:0}
+.chero__bg img{width:100%;height:100%;object-fit:cover}
+.chero__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(12,12,8,.88) 0%,rgba(12,12,8,.6) 46%,rgba(12,12,8,.12) 82%),
+             linear-gradient(0deg,rgba(12,12,8,.5),transparent 50%)}
+.chero__in{position:relative;z-index:2;color:#fff;padding-block:var(--s20) var(--s12);width:100%}
+.chero h1{max-width:22ch;color:#fff;margin-bottom:var(--s4);font-size:clamp(34px,4.6vw,54px)}
+.chero__sub{max-width:58ch;color:rgba(255,255,255,.8);font-size:var(--fs-lead);margin-bottom:var(--s8)}
+
+/* спеки */
+.specs{width:100%;border-collapse:collapse;font-size:15.5px}
+.specs td,.specs th{padding:14px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.specs th{font-weight:500;color:var(--ink2);width:42%;font-family:var(--f-body);font-size:15px}
+.specs td{font-weight:600}
+.specs .num{font-variant-numeric:tabular-nums}
+.specs .todo{color:var(--accent);font-weight:600}
+
+/* конфигурации / опции */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+.opt{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff}
+.opt__h{padding:var(--s4) var(--s6);border-bottom:1px solid var(--line);background:var(--surface);
+  font-family:var(--f-head);font-size:18px;font-weight:600}
+.opt__b{padding:var(--s6);font-size:15px;color:var(--ink2)}
+.sw{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s3)}
+.sw i{width:30px;height:30px;border-radius:var(--r-sm);border:1px solid rgba(0,0,0,.12);display:block}
+
+/* цена */
+.price{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+.price__c{border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s6);background:#fff}
+.price__c--mid{border-color:var(--accent);border-width:1px;box-shadow:0 0 0 3px rgba(140,47,57,.08)}
+.price__v{font-family:var(--f-head);font-size:30px;font-weight:600;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 40;display:block;margin-block:var(--s2) var(--s3);font-variant-numeric:tabular-nums}
+.price__note{font-size:13.5px;color:var(--ink2);margin:0}
+
+/* формы окон */
+.shapes{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s4)}
+.shape{aspect-ratio:1;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;
+  display:grid;place-items:center;padding:14px}
+.shape svg{width:100%;height:auto;color:var(--ink2)}
+
+/* процесс с таймлайном */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s6);counter-reset:tl}
+.tl__i{position:relative;padding-top:var(--s8)}
+.tl__i::before{content:"";position:absolute;top:9px;left:0;right:0;height:1px;background:var(--line)}
+.tl__i::after{content:"";position:absolute;top:5px;left:0;width:9px;height:9px;border-radius:50%;
+  background:var(--accent)}
+.tl__t{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;
+  display:block;margin-bottom:6px}
+.tl__i h3{font-size:19px;margin-bottom:8px}
+.tl__i p{font-size:14.5px;color:var(--ink2);margin:0}
+
+/* мостик в магазин */
+.bridge{display:flex;gap:var(--s8);align-items:center;justify-content:space-between;
+  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-md);
+  padding:var(--s8);background:#fff;flex-wrap:wrap}
+.bridge h3{margin-bottom:8px}
+.bridge p{margin:0;color:var(--ink2);max-width:60ch}
+
+@media (max-width:1080px){
+  .logos{grid-template-columns:repeat(4,1fr);gap:var(--s6)}
+  .opts,.price{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr 1fr}
+  .shapes{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:860px){
+  .split,.cons,.faqwrap,.quote,.bld,.warr,.mech__row{grid-template-columns:1fr}
+  /* гео-строка в одну строку, без трёх этажей */
+  .geobar{padding:8px 0}
+  .geobar .wrap{flex-wrap:nowrap;gap:var(--s4);overflow:hidden;justify-content:flex-start}
+  .geobar .wrap span{white-space:nowrap}
+  .geobar .wrap span:nth-child(3){display:none}
+  .warr{gap:var(--s8)}
+  .warr__big{justify-content:flex-start}
+  .cons{gap:var(--s12)}
+  .logos{grid-template-columns:repeat(3,1fr)}
+  .opts,.price{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr}
+  .tl__i{padding-top:var(--s6)}
+  .shapes{grid-template-columns:repeat(3,1fr)}
+  .mech{padding:var(--s6) var(--s4)}
+  .grid.g4{grid-template-columns:1fr 1fr}
+  .why__i h3{font-size:18px}
+  .bridge{flex-direction:column;align-items:flex-start}
+  .bridge .btn{width:100%}
+  .specs th{width:50%}
+}
+
+</style>
+</head>
+<body>
+<a href="#main" class="skiplink">Skip to content</a>
+
+<!-- ═══ ГЕО-СТРОКА - закрывает «вы работаете в моём районе?» ═══ -->
+<div class="geobar"><div class="wrap">
+  <span><b>Shipping nationwide</b> from our Linden, NJ warehouse</span>
+  <span><b>Installation</b> arranged in NJ / NY metro</span>
+  <span><b>Showroom</b> in Linden, NJ - by appointment</span>
+</div></div>
+
+<!-- ═══ ШАПКА - 72px, backdrop-blur, телефон с иконкой, корзина ═══ -->
+<header class="hdr"><div class="wrap hdr__in">
+  <a class="logo" href="index.html" aria-label="EuroDwell - home">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <path d="M2 11L13 2l11 9" stroke="#16150F" stroke-width="1.6" stroke-linecap="round"/>
+      <rect x="6" y="11" width="14" height="13" stroke="#8C2F39" stroke-width="1.6"/>
+      <path d="M13 11v13M6 17.5h14" stroke="#8C2F39" stroke-width="1.2"/>
+    </svg>
+    <span><b>Euro</b>Dwell</span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="upvc-windows.html">Products</a>
+    <a href="#" class="has-cart">Shop
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3h2l1.5 8h7L14 5H5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="13.5" r="1.1" fill="currentColor"/><circle cx="11.5" cy="13.5" r="1.1" fill="currentColor"/></svg>
+    </a>
+    <a href="#why">Why European</a>
+    <a href="#projects">Projects</a>
+    <a href="#builders">For Builders</a>
+    <a href="#about">About</a>
+  </nav>
+  <div class="hdr__act">
+    <a class="tel" href="tel:+19086619054">
+      <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M6.2 2.5 7.6 5.4 6 6.9c.6 1.6 2.5 3.5 4.1 4.1l1.5-1.6 2.9 1.4-.5 2.6c-.2.9-1.1 1.4-2 1.2C8.4 13.8 4.2 9.6 3.1 5c-.2-.9.3-1.8 1.2-2l1.9-.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>908-661-9054</span>
+    </a>
+    <a class="btn btn--primary btn--sm" href="#quote">Send my project</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="#16150F" stroke-width="1.6"/></svg>
+    </button>
+  </div>
+</div></header>
+
+<main id="main">
+
+<!-- ═══ ГЕРОЙ - статичный, оффер вместо категории, 2 CTA, телефон ═══ -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="https://eurodwell.com/wp-content/uploads/2025/04/aluminium_windows.jpg" alt="European aluminium windows in a modern home" fetchpriority="high">
+  </div>
+  <div class="wrap hero__in">
+    <p class="eyebrow rv" style="color:rgba(255,255,255,.62)">European windows &amp; doors · Linden, New Jersey</p>
+    <h1 class="rv" style="transition-delay:60ms">Engineered to seal.<br>Built to last 25 years.</h1>
+    <p class="hero__sub rv" style="transition-delay:120ms">
+      Tilt-and-turn technology that clamps shut like a submarine hatch - not a sliding sash.
+      Direct from EU factories, with our team reviewing your drawings, not just taking your order.
+    </p>
+    <div class="hero__cta rv" style="transition-delay:180ms">
+      <a class="btn btn--primary" href="#quote">Send my project</a>
+      <a class="btn btn--onimg" href="#why">See why it's different</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BAR - вынесено из FAQ, где это лежало ═══ -->
+<section class="trust"><div class="wrap"><div class="trust__grid">
+  <div class="trust__i">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 1.5 3 4.2v5.1c0 4 2.9 7.7 7 9.2 4.1-1.5 7-5.2 7-9.2V4.2L10 1.5Z" stroke="currentColor" stroke-width="1.5"/><path d="m7 10 2.2 2.2L13.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div><span class="trust__v">25-year warranty</span><span class="trust__l">On the full assembly and hardware</span></div>
+  </div>
+  <div class="trust__i">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div><span class="trust__v">7+ years</span><span class="trust__l">Supplying European systems to US projects</span></div>
+  </div>
+  <div class="trust__i">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 7.5 10 3l8 4.5-8 4.5-8-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12.5 10 17l8-4.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <div><span class="trust__v">Direct from EU</span><span class="trust__l">Aluplast · Aliplast · Yawal · Drutex</span></div>
+  </div>
+  <div class="trust__i">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 18s6-5.2 6-9.4A6 6 0 0 0 4 8.6C4 12.8 10 18 10 18Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8.4" r="2.2" stroke="currentColor" stroke-width="1.5"/></svg>
+    <div><span class="trust__v">4.7 ★ on Google</span><span class="trust__l">Showroom &amp; warehouse in Linden, NJ</span></div>
+  </div>
+</div></div></section>
+
+<!-- ═══ РАЗВИЛКА АУДИТОРИЙ - вместо «serving all» ═══ -->
+<section class="sec sec--tight"><div class="wrap">
+  <div class="split rv">
+    <a class="split__c" href="#quote">
+      <p class="eyebrow">I'm a homeowner</p>
+      <h3>Building or renovating my own home</h3>
+      <p class="muted small">Windows and doors for one house. See what's possible, what it costs, and who installs it.</p>
+      <span class="tlink">Start with my project <svg width="15" height="11" viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M1 5.5h12M9 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="split__c" href="#builders">
+      <p class="eyebrow">I'm a builder or architect</p>
+      <h3>Specifying for a client project</h3>
+      <p class="muted small">Submittals, shop drawings, hardware schedules, staged deliveries, 50/50 terms.</p>
+      <span class="tlink">See spec &amp; trade info <svg width="15" height="11" viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M1 5.5h12M9 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+</div></section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ОБРАЗОВАТЕЛЬНЫЙ БЛОК - главная находка аудита (B1).
+     Аргумент строится на механизме, а не на эпитетах.
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="sec dark" id="why">
+  <div class="wrap">
+    <div class="shead rv">
+      <p class="eyebrow">The part nobody tells you</p>
+      <h2>Your windows leak. It isn't a defect -<br>it's the design.</h2>
+      <p class="lead">
+        American homes overwhelmingly use double-hung and sliding windows. Both work by having one
+        sash slide past another. For that to slide easily, there has to be a gap - and the only thing
+        in that gap is a brush strip.
+      </p>
+    </div>
+
+    <!-- ── СИГНАТУРНЫЙ ЭЛЕМЕНТ: анимированный разрез механизма ── -->
+    <div class="mech rv">
+      <div class="mech__stage">
+        <div class="mech__row">
+          <!-- US: sliding sash -->
+          <figure class="mech__cell">
+            <figcaption class="mech__cap"><span class="dot dot--us"></span>Typical US slider / double-hung</figcaption>
+            <svg viewBox="0 0 300 190" class="mech__svg" role="img" aria-label="Cross-section: two sliding sashes with a brush strip and an air gap">
+              <defs>
+                <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#8FB3C0" stop-opacity=".45"/><stop offset="1" stop-color="#8FB3C0" stop-opacity=".18"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="300" height="190" fill="none"/>
+              <!-- outer sash -->
+              <rect x="34" y="44" width="46" height="102" rx="2" fill="#4A4A40" stroke="#6E6E60"/>
+              <rect x="44" y="54" width="26" height="82" fill="url(#glassA)"/>
+              <!-- inner sash -->
+              <rect x="96" y="44" width="46" height="102" rx="2" fill="#4A4A40" stroke="#6E6E60"/>
+              <rect x="106" y="54" width="26" height="82" fill="url(#glassA)"/>
+              <!-- brush strip -->
+              <g stroke="#B8B49E" stroke-width="1.1" opacity=".9">
+                <path d="M84 50v90M87 50v90M90 50v90M93 50v90"/>
+              </g>
+              <text x="88" y="164" class="mech__lbl" text-anchor="middle">brush strip</text>
+              <!-- air arrows leaking through -->
+              <g class="airflow" stroke="#E0655F" stroke-width="1.8" stroke-linecap="round" fill="none">
+                <path class="air a1" d="M170 66h-90"/><path class="air a2" d="M170 95h-90"/><path class="air a3" d="M170 124h-90"/>
+              </g>
+              <g fill="#E0655F">
+                <path class="air a1" d="M84 66 92 61.5v9z"/><path class="air a2" d="M84 95 92 90.5v9z"/><path class="air a3" d="M84 124 92 119.5v9z"/>
+              </g>
+              <text x="215" y="99" class="mech__lbl mech__lbl--warn" text-anchor="middle">air · sound</text>
+              <text x="215" y="115" class="mech__lbl mech__lbl--warn" text-anchor="middle">pass through</text>
+            </svg>
+            <p class="mech__note">A gap you can put a finger into. Sealed only by a wearing brush.</p>
+          </figure>
+
+          <!-- EU: tilt-and-turn compression -->
+          <figure class="mech__cell mech__cell--eu">
+            <figcaption class="mech__cap"><span class="dot dot--eu"></span>EuroDwell tilt-and-turn</figcaption>
+            <svg viewBox="0 0 300 190" class="mech__svg" role="img" aria-label="Cross-section: an eccentric cam pulls the sash into two compression gaskets">
+              <defs>
+                <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#9FC4CF" stop-opacity=".55"/><stop offset="1" stop-color="#9FC4CF" stop-opacity=".22"/>
+                </linearGradient>
+              </defs>
+              <!-- frame (static) -->
+              <rect x="22" y="34" width="52" height="112" rx="2" fill="#3E3E34" stroke="#6E6E60"/>
+              <rect x="22" y="34" width="11" height="112" fill="#31312A"/>
+              <text x="48" y="162" class="mech__lbl" text-anchor="middle">frame</text>
+              <!-- 2 compression gaskets -->
+              <rect class="gk" x="74" y="42" width="11" height="42" rx="4" fill="#8C2F39"/>
+              <rect class="gk" x="74" y="96" width="11" height="42" rx="4" fill="#8C2F39"/>
+              <!-- sash (moves left when clamped) -->
+              <g class="sash">
+                <rect x="90" y="34" width="62" height="112" rx="2" fill="#4A4A40" stroke="#7C7C6C"/>
+                <rect x="101" y="45" width="40" height="90" fill="url(#glassB)"/>
+                <path d="M110 45v90M121 45v90M132 45v90" stroke="#D3E6EC" stroke-width="1" opacity=".6"/>
+                <text x="121" y="162" class="mech__lbl" text-anchor="middle">sash · triple</text>
+              </g>
+              <!-- pull arrow before clamping -->
+              <g class="pullarrow">
+                <path d="M186 90h-18" stroke="#C8C4AE" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M166 90 174 85.5v9z" fill="#C8C4AE"/>
+              </g>
+              <!-- eccentric cam -->
+              <g transform="translate(196 90)">
+                <circle r="21" fill="#2A2A22" stroke="#8C8C7C" stroke-width="1.2"/>
+                <g class="cam__rot">
+                  <rect x="-19" y="-6.5" width="38" height="13" rx="6.5" fill="#8C2F39"/>
+                </g>
+                <circle r="3.6" fill="#F4F2EC"/>
+              </g>
+              <text x="196" y="128" class="mech__lbl" text-anchor="middle">eccentric cam</text>
+              <text x="196" y="141" class="mech__lbl" text-anchor="middle">multi-point</text>
+              <!-- sealed badge -->
+              <g class="sealmark">
+                <rect x="196" y="12" width="94" height="26" rx="13" fill="#1C3628" stroke="#7FBF9A" stroke-width="1.1"/>
+                <path d="M209 25.5l3.6 3.6 6.4-7.2" stroke="#7FBF9A" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="226" y="29" class="mech__lbl mech__lbl--ok">sealed</text>
+              </g>
+            </svg>
+            <p class="mech__note">The sash doesn't pass the frame - the cam pulls it <em>into</em> it.</p>
+          </figure>
+        </div>
+        <div class="mech__ctl">
+          <button class="btn btn--onimg btn--sm mech__btn" type="button" aria-pressed="false">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8.5 3.5 12 7l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="mech__btn-t">Turn the handle</span>
+          </button>
+          <p class="small muted mech__hint">Живая схема. На проде - то же плюс видео: купюра, зажатая в европейском окне, не вытаскивается.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4 следствия одного механизма ── -->
+    <div class="grid g4 rv" style="margin-top:var(--s16)">
+      <div class="why__i"><span class="why__n">01</span><h3>It's quieter</h3><p class="muted small">Sound leaks through gaps and weak frames, not just glass. No gap, no leak.</p></div>
+      <div class="why__i"><span class="why__n">02</span><h3>No drafts</h3><p class="muted small">Nothing to whistle through when the wind picks up in January.</p></div>
+      <div class="why__i"><span class="why__n">03</span><h3>Bills drop</h3><p class="muted small">Your HVAC stops paying for the air that leaves through the seal.</p></div>
+      <div class="why__i"><span class="why__n">04</span><h3>It stays that way</h3><p class="muted small">A brush strip wears out. A gasket under even pressure doesn't.</p></div>
+    </div>
+
+    <p class="lead rv" style="margin-top:var(--s12)">
+      And you still get both modes: turn the handle one way for a wide inward opening, the other way
+      for secure top-tilt ventilation - no window left open to the street, no screen to fight with.
+    </p>
+    <p class="rv" style="margin-top:var(--s6)"><a class="tlink" style="color:#E8A0A8;border-color:rgba(232,160,168,.35)" href="upvc-windows.html#compare">Read the full comparison
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M1 5.5h12M9 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ═══ КАТЕГОРИИ - оверлей во всю ширину, градиент вместо белой плашки ═══ -->
+<section class="sec" id="products"><div class="wrap">
+  <div class="shead rv">
+    <p class="eyebrow">Our products</p>
+    <h2>Nine systems, one supply chain</h2>
+    <p class="lead">Custom sizes are standard, not a surcharge. Two categories are also available to configure and buy online.</p>
+  </div>
+  <div class="grid g3 rv" id="tiles"></div>
+  <p class="small muted rv" style="margin-top:var(--s6)">
+    Not sure between materials? <a class="tlink" href="upvc-windows.html#vs">Compare uPVC vs aluminium</a>
+  </p>
+</div></section>
+
+<!-- ═══ КОНСУЛЬТАЦИЯ КАК ПРОДУКТ - находка B2 ═══ -->
+<section class="sec" style="background:var(--surface)"><div class="wrap">
+  <div class="cons">
+    <div class="rv">
+      <p class="eyebrow">How we work</p>
+      <h2 style="margin-bottom:var(--s6)">We don't just quote.<br>We work the project.</h2>
+      <p class="lead" style="margin-bottom:var(--s8)">Most suppliers wait for a purchase order. We start earlier - and stay longer. A typical home takes about three months from first drawing to delivery, and we're in that whole conversation.</p>
+      <a class="btn btn--primary" href="#quote">Send my drawings</a>
+      <p class="small muted" style="margin-top:var(--s4)">We'll come back with questions, not just a price.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step"><div class="step__n"></div><div>
+        <h3>Send what you have</h3>
+        <p class="muted small">A window schedule, an architect's plan, a phone photo of the opening, or a rough list on a napkin. Any format works.</p>
+      </div></div>
+      <div class="step"><div class="step__n"></div><div>
+        <h3>We read the drawings</h3>
+        <p class="muted small">We check openings, egress, spans, glazing and hardware against what you're actually trying to achieve. If something won't work, you'll hear it before it's ordered.</p>
+      </div></div>
+      <div class="step"><div class="step__n"></div><div>
+        <h3>Best solution at the lowest workable cost</h3>
+        <p class="muted small">Not the biggest order - the right one. We'll tell you where triple glazing earns its money and where it doesn't.</p>
+      </div></div>
+      <div class="step"><div class="step__n"></div><div>
+        <h3>We stay in it</h3>
+        <p class="muted small">Revisions, site questions, installer coordination, schedule changes. Architects and GCs regularly ask us to help resolve details - we do, within reason. We're suppliers, not your structural engineer.</p>
+      </div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ МОНТАЖ - снимает главное возражение (C2) ═══ -->
+<section class="sec sec--tight"><div class="wrap">
+  <div class="shead rv">
+    <p class="eyebrow">Supply and installation</p>
+    <h2>Who actually installs them</h2>
+    <p class="lead">The honest answer, which today is buried in our FAQ: our model is supply-first - but you're not left alone with a pallet.</p>
+  </div>
+  <div class="grid g3 rv">
+    <div class="card"><p class="eyebrow" style="color:var(--accent)">Linden NJ / NY metro</p><h3 style="margin-bottom:var(--s3)">We arrange it</h3><p class="muted small" style="margin:0">Installation with trained local pros we work with regularly. One point of contact for product and fitting.</p></div>
+    <div class="card"><p class="eyebrow" style="color:var(--accent)">Rest of the US</p><h3 style="margin-bottom:var(--s3)">We connect you</h3><p class="muted small" style="margin:0">Vetted installers plus we stay in the project - specs, details and schedule shared directly with them.</p></div>
+    <div class="card"><p class="eyebrow" style="color:var(--accent)">Your own crew</p><h3 style="margin-bottom:var(--s3)">We support them</h3><p class="muted small" style="margin:0">Full specs, installation details and schedules. We stay available to your installer throughout.</p></div>
+  </div>
+</div></section>
+
+<!-- ═══ КЕЙСЫ - вместо галереи стройки (I1) ═══ -->
+<section class="sec" id="projects"><div class="wrap">
+  <div class="shead rv"><p class="eyebrow">Selected projects</p><h2>Delivered, not rendered</h2>
+  <p class="lead">Заглушка структуры кейса. Нужно от команды: город, объём, системы, фото до/после, отзыв владельца.</p></div>
+  <div class="grid g3 rv" id="cases"></div>
+</div></section>
+
+<!-- ═══ ГАРАНТИЯ ═══ -->
+<section class="sec dark sec--tight"><div class="wrap">
+  <div class="warr rv">
+    <div>
+      <p class="eyebrow">Warranty</p>
+      <h2 style="margin-bottom:var(--s4)">25 years on the assembly<br>and the hardware</h2>
+      <p class="lead" style="margin:0">Not just the glass unit. It reflects European manufacturing tolerances and durable finishes - long service life, fewer callbacks, and support that matches the product.</p>
+    </div>
+    <div class="warr__big" aria-hidden="true"><span>25</span><small>years</small></div>
+  </div>
+</div></section>
+
+<!-- ═══ СИСТЕМЫ ПРОФИЛЕЙ - вместо каши из логотипов (I8) ═══ -->
+<section class="sec sec--tight"><div class="wrap">
+  <div class="shead rv"><p class="eyebrow">Profile systems</p><h2>What we actually build with</h2>
+  <p class="lead">These aren't sponsor badges. These are the extrusion and hardware systems your windows are made from - the reason the numbers on the spec sheet are what they are.</p></div>
+  <div class="logos rv" id="logos"></div>
+</div></section>
+
+<!-- ═══ FAQ - топ-5 + ссылка на полный ═══ -->
+<section class="sec" id="faq" style="background:var(--surface)"><div class="wrap">
+  <div class="faqwrap">
+    <div class="rv"><p class="eyebrow">Questions</p><h2>The five we get most</h2>
+      <p class="lead" style="margin-top:var(--s4)">Twelve more answered in full - including tariffs, minimum orders and quoting from architectural drawings.</p>
+      <p style="margin-top:var(--s6)"><a class="tlink" href="#">All 17 questions</a></p>
+    </div>
+    <div class="faq rv" id="faq-list"></div>
+  </div>
+</div></section>
+
+<!-- ═══ ФОРМА - 2 обязательных поля, обещание срока, альтернативы ═══ -->
+<section class="sec" id="quote"><div class="wrap">
+  <div class="quote">
+    <div class="quote__left rv">
+      <p class="eyebrow">Get a quote</p>
+      <h2 style="margin-bottom:var(--s6)">Tell us about your project</h2>
+      <p class="lead">We'll review the drawings and come back <b style="color:var(--ink)">within 1 business day</b> - with questions, options and a line-by-line quote.</p>
+      <ul class="ticks">
+        <li>Any format works - schedule, plans, sketch, or a photo of the opening</li>
+        <li>If European windows aren't right for your project, we'll say so</li>
+        <li>No spam, no reselling your data</li>
+      </ul>
+      <div class="quote__alt">
+        <p class="small muted" style="margin:0 0 8px">Prefer to talk?</p>
+        <a class="tel" href="tel:+19086619054" style="font-size:20px">
+          <svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M6.2 2.5 7.6 5.4 6 6.9c.6 1.6 2.5 3.5 4.1 4.1l1.5-1.6 2.9 1.4-.5 2.6c-.2.9-1.1 1.4-2 1.2C8.4 13.8 4.2 9.6 3.1 5c-.2-.9.3-1.8 1.2-2l1.9-.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          908-661-9054</a>
+        <p class="small muted" style="margin:8px 0 0">Mon-Fri, 9:00 a.m. - 6:00 p.m. ET</p>
+      </div>
+    </div>
+
+    <div class="quote__right rv">
+      <form class="form card" id="qform" novalidate>
+        <div class="form__row">
+          <div class="field">
+            <label for="fn">First name <span class="req">*</span></label>
+            <input id="fn" name="fn" type="text" autocomplete="given-name" required placeholder="First name">
+            <span class="err"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v4M7 10h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Please add your name</span>
+          </div>
+          <div class="field">
+            <label for="ln">Last name</label>
+            <input id="ln" name="ln" type="text" autocomplete="family-name" placeholder="Optional">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="ph">Phone <span class="req">*</span></label>
+            <input id="ph" name="ph" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(___) ___-____">
+            <span class="err"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v4M7 10h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> We need a number to call you back</span>
+          </div>
+          <div class="field">
+            <label for="em">Email</label>
+            <input id="em" name="em" type="email" autocomplete="email" placeholder="Optional">
+          </div>
+        </div>
+        <div class="field">
+          <label for="zip">ZIP code</label>
+          <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="07036">
+          <span class="hint">So we can check delivery and installation options in your area.</span>
+        </div>
+        <div class="field">
+          <label for="msg">Your project</label>
+          <textarea id="msg" name="msg" placeholder="Rough sizes, quantity, or just your question - optional"></textarea>
+        </div>
+        <label class="filedrop" for="file">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 14V4m0 0L6.5 7.5M10 4l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 13v2.5A1.5 1.5 0 0 0 4.5 17h11a1.5 1.5 0 0 0 1.5-1.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span id="fname">Attach drawings or photos - jpg, png, pdf up to 50 Mb. Larger files: paste a Drive / Dropbox link above.</span>
+          <input id="file" type="file" accept=".jpg,.jpeg,.png,.pdf" multiple>
+        </label>
+        <button class="btn btn--primary btn--full" type="submit" id="qsubmit">Send my project</button>
+        <p class="form__note">We reply within 1 business day. No spam, no reselling your data.</p>
+        <p class="form__alt">Or call <a class="tlink" href="tel:+19086619054">908-661-9054</a> · or <a class="tlink" href="#">message us on WhatsApp</a></p>
+      </form>
+
+      <!-- SUCCESS-состояние: «что дальше», а не «спасибо» -->
+      <div class="formdone" id="qdone" role="status" aria-live="polite">
+        <h3>Got it - we'll call you within 1 business day.</h3>
+        <p class="muted">Victor or Arthur will go through what you sent and come back with questions and options. Meanwhile:</p>
+        <ul class="ticks">
+          <li><a class="tlink" href="#">Download all 9 catalogs</a> - profiles, hardware, finishes</li>
+          <li><a class="tlink" href="#">Book a showroom visit</a> in Linden, NJ - we'll prepare the exact samples</li>
+          <li>Urgent? Call <a class="tlink" href="tel:+19086619054">908-661-9054</a></li>
+        </ul>
+        <p class="small muted" style="margin:0">Прототип: реального отправления нет.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ ДЛЯ ПОДРЯДЧИКОВ ═══ -->
+<section class="sec sec--tight" id="builders" style="background:var(--surface)"><div class="wrap">
+  <div class="bld rv">
+    <div>
+      <p class="eyebrow">For builders &amp; architects</p>
+      <h2 style="margin-bottom:var(--s4)">Submittals that pass, schedules that hold</h2>
+      <p class="lead">Clear submittals, shop drawings and hardware schedules. Realistic lead times and staged deliveries that fit your sequence. We quote directly from architectural drawings. Payment 50/50. Ask about the partner program - we're onboarding our first partners in NJ, NY and PA.</p>
+      <p style="margin-top:var(--s6)"><a class="btn btn--ghost" href="#quote">Send drawings for takeoff</a></p>
+    </div>
+    <ul class="bld__list">
+      <li><b>~3 months</b> typical production - start 4 months out and the schedule never slips</li>
+      <li><b>50 / 50</b> terms - deposit starts manufacturing, balance before release</li>
+      <li><b>3 delivery modes</b> - pickup Linden NJ, our delivery, or a container straight to site</li>
+      <li><b>Custom is standard</b> - arches, trapezoids, oversized units without a pricing cliff</li>
+      <li><b>Tariffs</b> - handled and explained up front, not discovered at the port</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ═══ О КОМПАНИИ ═══ -->
+<section class="sec sec--tight" id="about"><div class="wrap">
+  <div class="shead rv" style="margin-bottom:var(--s8)">
+    <p class="eyebrow">About</p>
+    <h2>A supplier with a warehouse you can drive to</h2>
+    <p class="lead">Seven years of supplying European windows and doors to US projects, working close to the source so we control specification, finish and lead time. Showroom and warehouse in Linden, New Jersey - with the team that answers your calls sitting in it.</p>
+  </div>
+  <div class="grid g4 rv">
+    <div class="card"><span class="trust__v">Licensed &amp; insured</span><p class="trust__l" style="margin-top:6px">NJ HIC # - нужно от клиента</p></div>
+    <div class="card"><span class="trust__v">Showroom</span><p class="trust__l" style="margin-top:6px">307 W. Elizabeth Ave, Linden, NJ 07036</p></div>
+    <div class="card"><span class="trust__v">By appointment</span><p class="trust__l" style="margin-top:6px">So we can prepare the exact samples you want to see</p></div>
+    <div class="card"><span class="trust__v">4.7 ★ · Google</span><p class="trust__l" style="margin-top:6px">Live widget - заменить статичные отзывы</p></div>
+  </div>
+</div></section>
+
+</main>
+
+<!-- ═══ ФУТЕР - без дубля адреса, с часами и гео ═══ -->
+<footer class="ftr"><div class="wrap">
+  <div class="ftr__grid">
+    <div>
+      <div class="logo" style="color:#fff;margin-bottom:var(--s4)">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <path d="M2 11L13 2l11 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="6" y="11" width="14" height="13" stroke="#C4747E" stroke-width="1.6"/>
+          <path d="M13 11v13M6 17.5h14" stroke="#C4747E" stroke-width="1.2"/>
+        </svg><span><b style="color:#C4747E">Euro</b>Dwell</span>
+      </div>
+      <p style="font-size:14px;max-width:34ch">European windows and doors, supplied direct and specified with you. Shipping nationwide from Linden, New Jersey.</p>
+      <p style="font-size:13px;opacity:.6;max-width:36ch">All product images are for illustrative purposes. Individual features such as finish tone may vary.</p>
+    </div>
+    <div><h4>Products</h4><ul>
+      <li><a href="upvc-windows.html">uPVC windows</a></li><li><a href="#">Aluminium windows</a></li>
+      <li><a href="#">Bi-fold systems</a></li><li><a href="#">Sliding panoramic doors</a></li>
+      <li><a href="#">Entry doors</a></li><li><a href="#">Garage doors</a></li>
+    </ul></div>
+    <div><h4>Company</h4><ul>
+      <li><a href="#about">About us</a></li><li><a href="#projects">Projects</a></li>
+      <li><a href="#faq">FAQ</a></li><li><a href="#">Catalogs (9 PDF)</a></li>
+      <li><a href="#builders">For builders</a></li><li><a href="#">Privacy policy</a></li>
+    </ul></div>
+    <div><h4>Showroom &amp; warehouse</h4>
+      <p style="font-size:15px;color:#fff;margin-bottom:6px">307 W. Elizabeth Ave<br>Linden, NJ 07036</p>
+      <p style="font-size:14px">Mon-Fri 9:00 a.m. - 6:00 p.m. ET<br>By appointment</p>
+      <p style="font-size:16px"><a href="tel:+19086619054" style="color:#fff;font-weight:600">908-661-9054</a><br><a href="mailto:sales@eurodwell.com">sales@eurodwell.com</a></p>
+      <p style="font-size:14px">Shipping nationwide · Installation NJ / NY metro</p>
+    </div>
+  </div>
+  <div class="ftr__bot">
+    <span>© <span id="yr"></span> EuroDwell</span>
+    <span>Прототип по аудиту · <a href="upvc-windows.html">Категория →</a></span>
+  </div>
+</div></footer>
+
+<!-- ═══ MOBILE STICKY CTA ═══ -->
+<div class="msticky">
+  <a class="btn btn--ghost" href="tel:+19086619054">
+    <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M6.2 2.5 7.6 5.4 6 6.9c.6 1.6 2.5 3.5 4.1 4.1l1.5-1.6 2.9 1.4-.5 2.6c-.2.9-1.1 1.4-2 1.2C8.4 13.8 4.2 9.6 3.1 5c-.2-.9.3-1.8 1.2-2l1.9-.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Call</a>
+  <a class="btn btn--primary" href="#quote">Send my project</a>
+</div>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   EuroDwell prototype - интерактив
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var CDN = 'https://eurodwell.com/wp-content/uploads/2025/04/';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── год в футере ── */
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ── reveal on scroll ── */
+  var rv = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    rv.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:.06 });
+    rv.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ── категории (плитки) ── */
+  var TILES = [
+    ['uPVC','Windows','upvc_windows.jpg','46 finishes · triple glazing','upvc-windows.html',''],
+    ['Aluminium','Windows','aluminium_windows.jpg','Slim frames · large openings','#',''],
+    ['Bi-Fold','Systems','bi-fold_doors.jpg','2-6 panels · lift-and-slide','#','Buy online'],
+    ['French &amp; Patio','Doors','french_and_patio_doors.jpg','Inward / outward · low threshold','#',''],
+    ['Sliding Panoramic','Doors','sliding_panoramic_doors.jpg','Lift-and-slide mechanism','#',''],
+    ['Glass','Walls','glass_walls.jpg','Structural glazing · glass-to-glass','#',''],
+    ['Entry','Doors','entry_doors.jpg','RC2 · multi-point locking','#','Buy online'],
+    ['Garage','Doors','garage_doors.jpg','Insulated · precision-balanced','#',''],
+    ['Blinds &amp;','Mosquito Nets','blinds_and_mosquito_nets.jpg','Integrated · low-profile','#','']
+  ];
+  var tw = document.getElementById('tiles');
+  if (tw) tw.innerHTML = TILES.map(function(t){
+    return '<a class="tile" href="'+t[4]+'">'+
+      (t[5] ? '<span class="tile__badge">'+t[5]+'</span>' : '')+
+      '<img src="'+CDN+t[2]+'" alt="'+t[0].replace(/&amp;/g,'&')+' '+t[1]+'" loading="lazy" decoding="async">'+
+      '<span class="tile__ov"><span><span class="tile__t">'+t[0]+'<br>'+t[1]+'</span>'+
+      '<span class="tile__m">'+t[3]+'</span></span>'+
+      '<svg class="tile__ar" width="26" height="12" viewBox="0 0 26 12" fill="none" aria-hidden="true">'+
+      '<path d="M0 6h23M19 1.5 24.5 6 19 10.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+      '</span></a>';
+  }).join('');
+
+  /* ── кейсы (структура-заглушка) ── */
+  var CASES = [
+    ['Custom home · Short Hills, NJ','2025','34 units · uPVC tilt-and-turn · triple glazed','upvc_windows.jpg'],
+    ['Renovation · Brooklyn, NY','2025','12 units + 1 bi-fold · aluminium · acoustic glass','bi-fold_doors.jpg'],
+    ['New build · Linden, NJ','2024','Entry door + 8 windows · RC2 hardware','entry_doors.jpg']
+  ];
+  var cw = document.getElementById('cases');
+  if (cw) cw.innerHTML = CASES.map(function(c){
+    return '<article class="cs"><div class="cs__img">'+
+      '<img src="'+CDN+c[3]+'" alt="'+c[0]+'" loading="lazy" decoding="async">'+
+      '<span class="cs__ba">Before / after</span></div>'+
+      '<div class="cs__b"><span class="cs__meta">'+c[0]+' · '+c[1]+'</span>'+
+      '<h3>Quieter rooms, no drafts</h3>'+
+      '<p class="cs__facts">'+c[2]+'</p>'+
+      '<a class="tlink" href="#">View project '+
+      '<svg width="15" height="11" viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M1 5.5h12M9 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'+
+      '</div></article>';
+  }).join('');
+
+  /* ── логотипы систем ── */
+  var LOGOS = ['alupast-1.jpg','aliplast-1.jpg','yawal-1.jpg','porta-1.jpg','blum-1.jpg','wiked-1.jpg'];
+  var lw = document.getElementById('logos');
+  if (lw) lw.innerHTML = LOGOS.map(function(l){
+    return '<img src="'+CDN+l+'" alt="" loading="lazy" decoding="async">';
+  }).join('');
+
+  /* ── FAQ: аккордеон с анимацией высоты ── */
+  function buildFaq(el, items){
+    if (!el) return;
+    el.innerHTML = items.map(function(it,i){
+      return '<div class="faq__i"'+(i===0?' open':'')+'>'+
+        '<button class="faq__q" type="button" aria-expanded="'+(i===0)+'">'+it[0]+'</button>'+
+        '<div class="faq__a"><div>'+it[1]+'</div></div></div>';
+    }).join('');
+    el.querySelectorAll('.faq__q').forEach(function(btn){
+      var item = btn.parentElement, panel = item.querySelector('.faq__a');
+      if (item.hasAttribute('open')) panel.style.height = panel.firstElementChild.offsetHeight+'px';
+      btn.addEventListener('click', function(){
+        var open = item.hasAttribute('open');
+        if (open){ panel.style.height = '0px'; item.removeAttribute('open'); btn.setAttribute('aria-expanded','false'); }
+        else { panel.style.height = panel.firstElementChild.offsetHeight+'px'; item.setAttribute('open',''); btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+    addEventListener('resize', function(){
+      el.querySelectorAll('.faq__i[open] .faq__a').forEach(function(p){
+        p.style.height = p.firstElementChild.offsetHeight+'px';
+      });
+    });
+  }
+  window.__buildFaq = buildFaq;
+
+  /* ── Механизм: авто-проигрывание + переключатель ── */
+  var mech = document.querySelector('.mech');
+  if (mech){
+    var btn = mech.querySelector('.mech__btn'), t = mech.querySelector('.mech__btn-t');
+    function setState(on){
+      mech.classList.toggle('clamped', on);
+      btn.setAttribute('aria-pressed', String(on));
+      t.textContent = on ? 'Turn it back' : 'Turn the handle';
+    }
+    btn.addEventListener('click', function(){ setState(!mech.classList.contains('clamped')); });
+    if (!reduce && 'IntersectionObserver' in window){
+      var mio = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if (e.isIntersecting){
+            mech.classList.add('play');
+            setTimeout(function(){ setState(true); }, 450);
+            mio.unobserve(mech);
+          }
+        });
+      }, { threshold:.4 });
+      mio.observe(mech);
+    } else { mech.classList.add('clamped'); }
+  }
+
+  /* ── Форма: валидация 2 обязательных полей + success ── */
+  var form = document.getElementById('qform');
+  if (form){
+    var done = document.getElementById('qdone');
+    var fileInput = document.getElementById('file'), fname = document.getElementById('fname');
+    if (fileInput) fileInput.addEventListener('change', function(){
+      if (!this.files.length) return;
+      var n = this.files.length, kb = 0;
+      for (var i=0;i<n;i++) kb += this.files[i].size;
+      fname.textContent = (n===1 ? this.files[0].name : n+' files') + ' · ' + Math.round(kb/1024) + ' KB';
+    });
+    function check(f){
+      var wrap = f.closest('.field'), ok = f.value.trim().length > (f.type==='tel' ? 6 : 1);
+      wrap.classList.toggle('is-err', !ok); return ok;
+    }
+    ['fn','ph'].forEach(function(id){
+      var f = document.getElementById(id);
+      f.addEventListener('blur', function(){ if (f.value) check(f); });
+      f.addEventListener('input', function(){ if (f.closest('.field').classList.contains('is-err')) check(f); });
+    });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = ['fn','ph'].map(function(id){ return check(document.getElementById(id)); }).every(Boolean);
+      if (!ok){ form.querySelector('.is-err input').focus(); return; }
+      var b = document.getElementById('qsubmit');
+      b.disabled = true; b.style.opacity = '.6'; b.textContent = 'Sending…';
+      setTimeout(function(){ form.style.display = 'none'; done.style.display = 'block'; done.scrollIntoView({block:'center'}); }, 700);
+    });
+  }
+
+  /* ── Бургер: заглушка прототипа ── */
+  var bg = document.querySelector('.burger');
+  if (bg) bg.addEventListener('click', function(){
+    var open = bg.getAttribute('aria-expanded') === 'true';
+    bg.setAttribute('aria-expanded', String(!open));
+    alert('Прототип: мобильное меню не собрано.\n\nСтруктура: Products · Shop · Why European · Projects · For Builders · About + телефон и корзина в баре, sticky CTA снизу.');
+  });
+})();
+</script>
+<script>
+__buildFaq(document.getElementById('faq-list'), [
+ ['Do you provide installation?',
+  '<p>Our model is supply-first. In the Linden, NJ / New York City region we arrange installation with trained local pros we work with regularly. Across the rest of the US we connect you with vetted installers and stay engaged - sharing specs, details and schedules so the onsite work aligns with the product and your timeline.</p>'],
+ ['What warranty do you offer?',
+  '<p>A <b>25-year warranty</b> across the full assembly and the hardware - not just the glass unit. It reflects European manufacturing tolerances, tight seals and durable finishes. In short: long service life, fewer callbacks, and support that matches the product.</p>'],
+ ['When should we start the process?',
+  '<p>Begin once your drawings and measurements are final - that keeps revisions and re-quotes to a minimum. We recommend contacting us <b>about 4 months</b> ahead of your target installation: typical production lead time is around <b>3 months</b>, and we use the extra month to review scope, lock selections and coordinate delivery so the schedule stays predictable.</p>'],
+ ['Where can I see your prices?',
+  '<p>Pricing is project-specific. Quantities, unit sizes, glazing, finishes, hardware and delivery logistics all affect cost, so we build a clear line-by-line quote for your exact scope. Send basic measurements - a schedule, sketch or plans - and you’ll have a real number instead of a range.</p><p class="small muted">Прототип: сюда добавить вилку «typical project $X-Y» по каждой категории. Нужны данные от продаж.</p>'],
+ ['What are your payment terms?',
+  '<p>Orders run on a <b>50/50</b> basis. A 50% deposit confirms specifications and starts manufacturing. The final 50% is due before we release the goods - for pickup from our Linden, NJ warehouse, for EuroDwell-arranged domestic shipping, or for a direct container shipment to your job site.</p>']
+]);
+</script>
+</body>
+</html>

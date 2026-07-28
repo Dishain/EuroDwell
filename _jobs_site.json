@@ -1,0 +1,16 @@
+[
+ {
+  "url": "https://eurodwell.com/",
+  "width": 1440,
+  "height": 1000,
+  "wait": 6000,
+  "js": "JSON.stringify({\n nav:[...document.querySelectorAll('header a, nav a')].map(function(a){\n   return (a.textContent||'').trim().slice(0,26)+' -> '+a.getAttribute('href');}).slice(0,40),\n foot:[...document.querySelectorAll('footer a')].map(function(a){\n   return (a.textContent||'').trim().slice(0,26)+' -> '+a.getAttribute('href');}).slice(0,30),\n htmlOverflow:getComputedStyle(document.documentElement).overflow,\n bodyOverflow:getComputedStyle(document.body).overflow,\n htmlH:document.documentElement.scrollHeight, bodyH:document.body.scrollHeight,\n winH:innerHeight,\n focusStyles:(function(){var a=document.querySelector('header a');if(!a)return '?';\n   a.focus();var s=getComputedStyle(a);return 'outline:'+s.outlineStyle+' '+s.outlineWidth+' / '+s.outlineColor;})(),\n autoplay:[...document.querySelectorAll('.swiper,.elementor-slides,[data-autoplay],video')].length,\n forms:[...document.querySelectorAll('form')].map(function(f){\n   return [...f.querySelectorAll('input,select,textarea')].filter(function(i){return i.type!=='hidden';})\n     .map(function(i){return (i.name||i.type)+(i.required?'*':'');}).join(' | ');})\n})",
+  "jsWait": 300,
+  "shots": [
+   {
+    "name": "site-links",
+    "scroll": 0
+   }
+  ]
+ }
+]
