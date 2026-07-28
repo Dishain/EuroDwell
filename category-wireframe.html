@@ -466,7 +466,12 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .chero h1{margin-block:var(--s16);font-size:clamp(28px,3.4vw,38px)}
 
 /* таблицы сравнения */
-.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* overflow-x:auto прокручивает таблицу, но НЕ отсекает её min-content:
+   640px «просачиваются» вверх по дереву, Chrome на мобильном решает, что страница
+   не помещается, и расширяет layout viewport - вся вёрстка уезжает вправо.
+   contain:inline-size делает ширину контейнера независимой от содержимого. */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;
+  contain:inline-size}
 .cmp{width:100%;border-collapse:collapse;font-size:15px;min-width:640px}
 .cmp th,.cmp td{padding:var(--s16);text-align:left;vertical-align:top;
   border-bottom:1px solid var(--hair2)}
@@ -478,8 +483,11 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .cmp thead .col-eu{color:var(--ink);font-weight:700}
 .cmp tbody .col-eu{font-weight:500}
 .cmp__span{background:var(--fill);font-size:14px;color:var(--ink2)}
+/* nowrap нужен коротким пропускам вида «0.__ CFM», но длинная пометка
+   с ним раздувает таблицу и вместе с ней всю страницу на мобильном */
 .todo{color:var(--ink);font-weight:600;background:var(--fill);
   padding:2px var(--s8);border-radius:var(--s4);white-space:nowrap}
+.todo--wrap{white-space:normal;display:inline-block}
 
 /* спеки */
 .specs{width:100%;border-collapse:collapse;font-size:15px}
@@ -817,6 +825,77 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .legend>span{display:inline-flex;align-items:center;gap:var(--s8)}
 .legend .tag{height:26px;font-size:12px;padding:0 var(--s8)}
 
+/* ═══ Мобильное меню ═══
+   Панель справа на всю высоту. Группы раскрываются аккордеоном, потому что
+   9 категорий одним списком не помещаются в экран без прокрутки вслепую. */
+.mnav{position:fixed;inset:0;z-index:100;overflow:hidden}
+.mnav[hidden]{display:none}
+.mnav__scrim{position:absolute;inset:0;background:rgba(27,27,29,.42);
+  backdrop-filter:blur(2px);animation:mnavFade var(--dur) var(--ease)}
+.mnav__panel{
+  position:absolute;top:0;right:0;bottom:0;width:min(400px,100%);
+  background:var(--surface);display:flex;flex-direction:column;
+  box-shadow:-16px 0 40px rgba(27,27,29,.14);
+  animation:mnavIn 260ms var(--ease)
+}
+@keyframes mnavFade{from{opacity:0}to{opacity:1}}
+@keyframes mnavIn{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+
+.mnav__top{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s16);padding:var(--s12) var(--s16);border-bottom:1px solid var(--hair2);
+  min-height:60px;flex-shrink:0}
+.mnav__top .logo{min-height:44px}
+.mnav__x{width:44px;height:44px;border:0;background:var(--fill2);border-radius:50%;
+  color:var(--ink);display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.mnav__x:hover{background:var(--fill)}
+
+.mnav__body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:var(--s8) var(--s16) var(--s24)}
+
+/* пункт верхнего уровня: 56px - палец попадает не глядя */
+.mnav__l,.mnav__t{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s12);
+  width:100%;min-height:56px;padding:0;border:0;background:none;
+  font:inherit;font-size:18px;font-weight:600;color:var(--ink);
+  letter-spacing:-.012em;text-align:left;cursor:pointer;
+  border-bottom:1px solid var(--hair2)
+}
+.mnav__l--sec{font-size:16px;font-weight:500;color:var(--ink2);min-height:48px}
+.mnav__l[aria-current]{color:var(--ink)}
+.mnav__l[aria-current]::after{content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--ink);flex-shrink:0}
+.mnav__c{color:var(--ink2);transition:transform var(--dur) var(--ease);flex-shrink:0}
+.mnav__grp.open .mnav__c{transform:rotate(180deg)}
+
+/* раскрывающаяся часть: высота считается в JS, чтобы анимация была плавной */
+.mnav__p{overflow:hidden;height:0;transition:height 300ms var(--ease)}
+.mnav__p>div{padding:var(--s8) 0 var(--s16)}
+.mnav__p a{display:flex;align-items:center;gap:var(--s8);min-height:48px;
+  font-size:16px;color:var(--ink);padding-left:var(--s12)}
+.mnav__p a:active{background:var(--fill2)}
+.mnav__h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink3);margin:var(--s12) 0 var(--s4);padding-left:var(--s12)}
+.mnav__h:first-child{margin-top:var(--s4)}
+.mnav__b{display:inline-flex;align-items:center;height:20px;padding:0 var(--s8);
+  border-radius:var(--r-pill);background:var(--ink);color:#fff;
+  font-size:11px;font-weight:600;letter-spacing:.02em}
+.mnav__n{display:inline-flex;align-items:center;justify-content:center;
+  min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);
+  background:var(--ink);color:#fff;font-size:11px;font-weight:700}
+.mnav__cat{display:flex;align-items:center;gap:var(--s8);width:100%;min-height:48px;
+  margin-top:var(--s8);padding:0 var(--s12);border:1px solid var(--hair);
+  border-radius:var(--r-chip);background:var(--fill2);
+  font:inherit;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left}
+
+.mnav__sep{height:1px;background:var(--hair);margin:var(--s16) 0}
+.mnav__geo{margin-top:var(--s24);padding-top:var(--s16);border-top:1px solid var(--hair2);
+  font-size:13px;line-height:1.5;color:var(--ink2)}
+.mnav__geo b{color:var(--ink);font-weight:600}
+
+.mnav__foot{flex-shrink:0;display:flex;flex-direction:column;gap:var(--s8);
+  padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom));
+  border-top:1px solid var(--hair2);background:var(--surface)}
+
 /* ── Модалка: каталог по email ── */
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:var(--s20)}
 /* display:grid перебивает [hidden], поэтому скрытие объявляем явно */
@@ -835,7 +914,11 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .ftr__btn{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;
   text-align:left}
 .ftr__btn:hover{color:var(--ink)}
-button.alink{background:none;cursor:pointer}
+/* кнопка в роли ссылки: у button есть своя рамка по умолчанию, её надо снять,
+   иначе остаётся только нижняя граница от .alink */
+button.alink{background:none;cursor:pointer;border:0;border-bottom:1px solid var(--hair);
+  padding:0 0 2px;font:inherit;color:var(--ink)}
+button.alink:hover{border-color:var(--ink)}
 
 .msticky{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:var(--s8);
   padding:var(--s12) var(--s16) calc(var(--s12) + env(safe-area-inset-bottom));
@@ -866,6 +949,10 @@ button.alink{background:none;cursor:pointer}
   .pdp__side{position:static}
   .incl{grid-template-columns:1fr;gap:var(--s20)}
   .burger{display:flex}
+  /* .nav скрыт, и его margin-left:auto перестал работать - переносим на зону действий,
+     иначе бургер уезжает к центру экрана */
+  .hdr__act{margin-left:auto}
+  .hdr__sep{display:none}
   .hero__in,.chero__in{grid-template-columns:1fr;gap:var(--s32)}
   .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -875,7 +962,7 @@ button.alink{background:none;cursor:pointer}
 }
 @media (max-width:720px){
   :root{--header-h:60px}
-  .wrap{padding-inline:var(--s20)}
+  .wrap{padding-inline:var(--s16)}
   .sec{padding-block:var(--s40)}
   .sec--sm{padding-block:var(--s32)}
   .hero{padding-block:var(--s24) var(--s40)}
@@ -975,7 +1062,7 @@ button.alink{background:none;cursor:pointer}
       <span class="cart__n">2</span>
     </a>
     <a class="btn btn--primary btn--sm" href="#quote">Send my project</a>
-    <button class="burger" aria-label="Menu" aria-expanded="false">
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav">
       <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -1158,7 +1245,7 @@ button.alink{background:none;cursor:pointer}
 </div></section>
 
 <!-- 05 · ТАБЛИЦА СРАВНЕНИЯ -->
-<section class="sec--sm"><div class="wrap">
+<section class="sec--sm" id="compare"><div class="wrap">
   <div class="blabel"><span class="bnum">05</span><p class="eyebrow">Таблица сравнения</p></div>
   <div class="shead"><h2>What actually differs</h2></div>
   <div class="tscroll">
@@ -1168,7 +1255,7 @@ button.alink{background:none;cursor:pointer}
         <tr><th>Sealing method</th><td>Brush strip inside a sliding gap</td><td class="col-eu">Multi-point cams + 2 continuous compression gaskets</td></tr>
         <tr><th>Air infiltration</th><td>Limited by design - sliding surfaces can't take compression seals</td><td class="col-eu"><span class="todo">&lt; 0.0__ CFM/sq.ft</span></td></tr>
         <tr><th>Glazing</th><td>Usually double</td><td class="col-eu">Double or triple as standard</td></tr>
-        <tr><th>Noise (STC)</th><td class="todo">__</td><td class="col-eu"><span class="todo">__</span> with laminated acoustic glass</td></tr>
+        <tr><th>Noise (STC)</th><td class="todo">__</td><td class="col-eu">≈ 25 base<br><span class="todo">с акустическим стеклом - нужны данные</span></td></tr>
         <tr><th>Ventilation modes</th><td>Open / closed</td><td class="col-eu">Closed · micro-vent · top-tilt · full inward turn</td></tr>
         <tr><th>Frame</th><td>Vinyl, often thin enough to flex by hand</td><td class="col-eu">Multi-chamber, steel-reinforced</td></tr>
         <tr><th>Sizes &amp; shapes</th><td>Standard sizes; custom pricing jumps sharply</td><td class="col-eu">Custom is standard - arches, trapezoids, oversized</td></tr>
@@ -1202,7 +1289,7 @@ button.alink{background:none;cursor:pointer}
       </div>
     </div>
     <table class="specs">
-      <tr><th>U-factor (whole unit)</th><td class="todo">0.__ - нужен сертификат</td></tr>
+      <tr><th>U-factor (whole unit)</th><td>≈ 0.23 <span class="todo todo--wrap">по FAQ, нужен сертификат</span></td></tr>
       <tr><th>Air infiltration</th><td class="todo">&lt; 0.0__ CFM/sq.ft</td></tr>
       <tr><th>Sound reduction (STC / Rw)</th><td class="todo">__ / __ dB</td></tr>
       <tr><th>Frame chambers</th><td>5-6 chambers</td></tr>
@@ -1274,7 +1361,7 @@ button.alink{background:none;cursor:pointer}
       </tbody>
     </table>
   </div>
-  <p style="margin-top:var(--s20)"><a class="alink" href="#">See aluminium windows
+  <p style="margin-top:var(--s20)"><a class="alink" href="home-wireframe.html#products">See aluminium windows
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13.5 6.5 19 12l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 </div></section>
 
@@ -1358,7 +1445,7 @@ button.alink{background:none;cursor:pointer}
       <h2 style="margin-bottom:var(--s12)">Asked on almost every uPVC project</h2>
       <p class="t-m" style="margin-bottom:var(--s20)">Разметка <b>FAQPage</b> даёт расширенный сниппет
       в Google. У вас 17 готовых вопросов - самая дешёвая победа в SEO.</p>
-      <a class="alink" href="#">All 17 questions
+      <a class="alink" href="faq-wireframe.html">All 19 questions
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13.5 6.5 19 12l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="faq" id="faq-list"></div>
@@ -1391,7 +1478,7 @@ button.alink{background:none;cursor:pointer}
           <span class="t-sec t-m">Mon-Fri, 9:00 a.m. - 6:00 p.m. ET</span>
         </div>
       </div>
-      <p class="t-sec" style="margin-top:var(--s16)"><a class="alink" href="#">Or download the uPVC catalog (PDF)</a></p>
+      <p class="t-sec" style="margin-top:var(--s16)"><button class="alink" type="button" data-cat-form="the uPVC windows catalog">Or get the uPVC catalog by email</button></p>
     </div>
 
     <div>
@@ -1412,14 +1499,14 @@ button.alink{background:none;cursor:pointer}
           <input id="file" type="file" accept=".jpg,.jpeg,.png,.pdf" multiple></label>
         <button class="btn btn--primary btn--full" type="submit" id="qsubmit">Send my project</button>
         <p class="fnote">We reply within 1 business day. No spam, no reselling your data.</p>
-        <p class="falt">Or call <a class="alink" href="tel:+19086619054">908-661-9054</a> · or <a class="alink" href="#">message us on WhatsApp</a></p>
+        <p class="falt">Or call <a class="alink" href="tel:+19086619054">908-661-9054</a> · or <a class="alink" href="contact-wireframe.html">message us on WhatsApp</a></p>
       </form>
       <div class="fdone" id="qdone" role="status" aria-live="polite">
         <span class="chip" style="margin-bottom:var(--s16)" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <h3>Got it - we'll call within 1 business day.</h3>
-        <p class="t-m" style="margin-bottom:var(--s16)">Victor or Arthur will go through what you sent
+        <p class="t-m" style="margin-bottom:var(--s16)">Our project team will go through what you sent
         and come back with questions and options.</p>
         <p class="t-sec t-m3" style="margin:0">Success-состояние: «что дальше», а не «спасибо».</p>
       </div>
@@ -1494,6 +1581,91 @@ button.alink{background:none;cursor:pointer}
     <span>Shipping nationwide · Installation NJ / NY metro</span>
   </div>
 </div></footer>
+
+<!-- Мобильное меню: панель справа, группы раскрываются аккордеоном -->
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav__scrim" data-mnav-close></div>
+  <aside class="mnav__panel" role="dialog" aria-modal="true" aria-label="Menu">
+
+    <div class="mnav__top">
+      <a class="logo" href="home-wireframe.html">
+        <span class="ph" style="width:28px;height:28px;border-radius:8px" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M12 5v14M4 12h16" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span><span>EuroDwell</span>
+      </a>
+      <button class="mnav__x" type="button" aria-label="Close menu" data-mnav-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="mnav__body">
+
+      <div class="mnav__grp">
+        <button class="mnav__t" type="button" aria-expanded="false">
+          <span>Products</span>
+          <svg class="mnav__c" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mnav__p"><div>
+          <p class="mnav__h">Windows</p>
+          <a href="category-wireframe.html">uPVC windows</a>
+          <a href="#">Aluminium windows</a>
+          <p class="mnav__h">Doors</p>
+          <a href="entry-doors-wireframe.html">Entry doors <span class="mnav__b">Shop</span></a>
+          <a href="#">French &amp; patio doors</a>
+          <a href="#">Bi-fold systems <span class="mnav__b">Shop</span></a>
+          <a href="#">Garage doors</a>
+          <p class="mnav__h">Glass systems</p>
+          <a href="#">Sliding panoramic doors</a>
+          <a href="#">Glass walls</a>
+          <p class="mnav__h">Shading &amp; screens</p>
+          <a href="#">Blinds &amp; mosquito nets</a>
+          <button class="mnav__cat" type="button" data-cat-form="all 9 catalogs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5h18v11H3z" stroke="currentColor" stroke-width="1.8"/><path d="m3.5 7 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Get all 9 catalogs by email
+          </button>
+        </div></div>
+      </div>
+
+      <div class="mnav__grp">
+        <button class="mnav__t" type="button" aria-expanded="false">
+          <span>Shop</span>
+          <svg class="mnav__c" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mnav__p"><div>
+          <p class="mnav__h">Ready to order online</p>
+          <a href="shop-wireframe.html">Entry doors</a>
+          <a href="#">Bi-fold doors</a>
+          <a href="cart-wireframe.html">Cart <span class="mnav__n">2</span></a>
+        </div></div>
+      </div>
+
+      <a class="mnav__l" href="home-wireframe.html#why" data-nav="why">Why European</a>
+      <a class="mnav__l" href="projects-wireframe.html" data-nav="projects">Projects</a>
+
+      <div class="mnav__sep"></div>
+
+      <a class="mnav__l mnav__l--sec" href="builders-wireframe.html" data-nav="builders">For builders</a>
+      <a class="mnav__l mnav__l--sec" href="contact-wireframe.html#showroom">Showroom</a>
+      <a class="mnav__l mnav__l--sec" href="#">About</a>
+      <a class="mnav__l mnav__l--sec" href="faq-wireframe.html" data-nav="faq">FAQ</a>
+      <a class="mnav__l mnav__l--sec" href="contact-wireframe.html" data-nav="contact">Contact</a>
+
+      <div class="mnav__geo">
+        <b>Shipping nationwide</b> from Linden, NJ<br>
+        Installation arranged in NJ / NY metro
+      </div>
+    </div>
+
+    <div class="mnav__foot">
+      <a class="btn btn--white btn--full" href="tel:+19086619054">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.4 3.5 10.3 7.4 8 9.5c.9 2.2 3.4 4.7 5.6 5.6l2.1-2.3 3.9 1.9-.7 3.4c-.2 1.2-1.4 1.9-2.6 1.6C11.4 18.3 5.7 12.6 4.1 6.8c-.3-1.2.4-2.4 1.6-2.6l2.7-.7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        908-661-9054
+      </a>
+      <a class="btn btn--primary btn--full" href="#quote">Send my project</a>
+    </div>
+
+  </aside>
+</div>
 
 <!-- Каталог по email: одна модалка на весь сайт, заголовок подставляется -->
 <div class="modal" id="catmodal" hidden>
@@ -1723,12 +1895,68 @@ var W = (function(){
     });
   }
 
-  var bg=document.querySelector('.burger');
-  if(bg) bg.addEventListener('click',function(){
-    alert('Вайрфрейм: мобильное меню не собрано.\n\nОсновное: Products (4 группы) · Shop · Why European · Projects\nВторичное (из тёмной строки): Showroom · For builders · About · FAQ · Contact\n+ телефон, корзина, sticky CTA');
-  });
+  /* мобильное меню */
+  function mobileNav(){
+    var box=document.getElementById('mnav'),
+        bg=document.querySelector('.burger');
+    if(!box||!bg) return;
+    var panel=box.querySelector('.mnav__panel'), opener=null;
 
-  fillPh(); mech(); quoteForm(); catalogModal();
+    function open(){
+      opener=document.activeElement;
+      box.hidden=false;
+      bg.setAttribute('aria-expanded','true');
+      document.body.style.overflow='hidden';
+      var first=panel.querySelector('.mnav__x');
+      if(first) first.focus();
+    }
+    function close(){
+      box.hidden=true;
+      bg.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+      if(opener&&opener.focus) opener.focus();
+    }
+    bg.addEventListener('click',function(){
+      box.hidden ? open() : close();
+    });
+    box.addEventListener('click',function(e){
+      if(e.target.closest('[data-mnav-close]')) close();
+      /* уходим по ссылке - меню закрываем, иначе оно останется поверх новой страницы
+         при переходе по якорю на этой же странице */
+      var a=e.target.closest('a[href]');
+      if(a&&!a.hasAttribute('data-mnav-close')) close();
+    });
+
+    /* аккордеон групп: высоту считаем, чтобы анимация была плавной */
+    panel.querySelectorAll('.mnav__t').forEach(function(t){
+      var grp=t.closest('.mnav__grp'), p=grp.querySelector('.mnav__p');
+      t.addEventListener('click',function(){
+        var isOpen=grp.classList.contains('open');
+        if(isOpen){ p.style.height='0px'; grp.classList.remove('open'); }
+        else{ p.style.height=p.firstElementChild.offsetHeight+'px'; grp.classList.add('open'); }
+        t.setAttribute('aria-expanded',String(!isOpen));
+      });
+    });
+
+    /* фокус не должен уходить за пределы открытой панели */
+    document.addEventListener('keydown',function(e){
+      if(box.hidden) return;
+      if(e.key==='Escape'){ close(); return; }
+      if(e.key!=='Tab') return;
+      var f=panel.querySelectorAll('a[href],button:not([disabled])');
+      if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    });
+
+    /* на десктопе панель не нужна: если её растянуть мышью, она зависнет открытой */
+    addEventListener('resize',function(){
+      if(!box.hidden && innerWidth>1080) close();
+    });
+  }
+
+  fillPh(); mech(); quoteForm(); catalogModal(); mobileNav();
   return {ph:ph,ico:ico,I:I,note:note,icards:icards,buildFaq:buildFaq,fillPh:fillPh};
 })();
 </script>
@@ -1862,7 +2090,7 @@ var W = (function(){
     ['Do you offer nailing flanges?','<p>Yes. We supply nailing flanges, brick-mould and sill extensions so the units integrate with standard US wall assemblies and flashing details. Tell us your wall build-up and we’ll specify the right accessory package.</p>'],
     ['What sizes and shapes are available?','<p>Windows are made to your openings rather than to a catalogue of standard sizes. Arches, trapezoids, triangles, circles and oversized units are normal production, not a special order with a pricing cliff.</p>'],
     ['Can I review finishes before ordering?','<p>Yes - that’s what the showroom in Linden, NJ is for, and it’s by appointment so we can prepare the exact profile sections, glazing units and hardware you want to see. We can also send finish samples if a visit isn’t practical.</p>'],
-    ['Can you quote from architectural drawings?','<p>Yes. Send the window schedule and elevations in any format - PDF, DWG, a photo of a printed sheet. We produce a line-by-line quote per opening and flag anything in the drawings that won’t work before it goes into production.</p>'],
+    ['Can you quote from architectural drawings?','<p>Yes - PDF works best. Send the window schedule and elevations as a PDF, or even a photo of a printed sheet. We produce a line-by-line quote per opening and flag anything in the drawings that won’t work before it goes into production.</p>'],
     ['What about tariffs?','<p>Handled and explained up front, not discovered at the port. Import duties are built into the quote you receive, so the number you approve is the number you pay.</p>']
   ];
   var fw=document.getElementById('faq-list');
