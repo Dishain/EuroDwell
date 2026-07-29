@@ -199,8 +199,6 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .mm__col a{font-size:15px;font-weight:500;color:var(--ink);display:flex;align-items:center;
   gap:var(--s8);min-height:28px}
 .mm__col a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
-.mm__b{font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px var(--s8);
-  border-radius:var(--r-pill);background:var(--ink);color:#fff;white-space:nowrap}
 .mm__foot{grid-column:1/-1;display:flex;gap:var(--s32);flex-wrap:wrap;
   padding-top:var(--s20);border-top:1px solid var(--hair2)}
 .mm__note{align-self:center;padding-left:var(--s24);border-left:1px solid var(--hair2)}
@@ -864,9 +862,6 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .mnav__h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink3);margin:var(--s12) 0 var(--s4);padding-left:var(--s12)}
 .mnav__h:first-child{margin-top:var(--s4)}
-.mnav__b{display:inline-flex;align-items:center;height:20px;padding:0 var(--s8);
-  border-radius:var(--r-pill);background:var(--ink);color:#fff;
-  font-size:11px;font-weight:600;letter-spacing:.02em}
 .mnav__n{display:inline-flex;align-items:center;justify-content:center;
   min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);
   background:var(--ink);color:#fff;font-size:11px;font-weight:700}
