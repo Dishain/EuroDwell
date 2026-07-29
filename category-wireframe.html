@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Microsoft Clarity: записи сессий, карты кликов и скроллов, JS-ошибки.
+     Один и тот же тег на всех страницах прототипа - иначе переходы между
+     ними разваливаются на отдельные сессии.
+     Проверка на file:// - чтобы локальные прогоны не попадали в статистику. -->
+<script>
+(function(c,l,a,r,i,t,y){
+  if(l.location.protocol==='file:')return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "xu4af9zcva");
+</script>
 <meta name="color-scheme" content="light">
 <title>uPVC Tilt-and-Turn Windows | Direct from EU Factories - EuroDwell</title>
 <meta name="description" content="European uPVC tilt-and-turn windows: multi-chamber steel-reinforced frames, triple glazing, 46 finishes, 25-year warranty. Quoted from your drawings.">

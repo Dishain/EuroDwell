@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Microsoft Clarity: записи сессий, карты кликов и скроллов, JS-ошибки.
+     Один и тот же тег на всех страницах прототипа - иначе переходы между
+     ними разваливаются на отдельные сессии.
+     Проверка на file:// - чтобы локальные прогоны не попадали в статистику. -->
+<script>
+(function(c,l,a,r,i,t,y){
+  if(l.location.protocol==='file:')return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "xu4af9zcva");
+</script>
 <meta name="color-scheme" content="light">
 <title>Your Cart - EuroDwell</title>
 <meta name="description" content="Cart and checkout wireframe.">
