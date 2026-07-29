@@ -454,7 +454,12 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .chero h1{margin-block:var(--s16);font-size:clamp(28px,3.4vw,38px)}
 
 /* таблицы сравнения */
-.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* overflow-x:auto прокручивает таблицу, но НЕ отсекает её min-content:
+   640px «просачиваются» вверх по дереву, Chrome на мобильном решает, что страница
+   не помещается, и расширяет layout viewport - вся вёрстка уезжает вправо.
+   contain:inline-size делает ширину контейнера независимой от содержимого. */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;
+  contain:inline-size}
 .cmp{width:100%;border-collapse:collapse;font-size:15px;min-width:640px}
 .cmp th,.cmp td{padding:var(--s16);text-align:left;vertical-align:top;
   border-bottom:1px solid var(--hair2)}
@@ -466,8 +471,11 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .cmp thead .col-eu{color:var(--ink);font-weight:700}
 .cmp tbody .col-eu{font-weight:500}
 .cmp__span{background:var(--fill);font-size:14px;color:var(--ink2)}
+/* nowrap нужен коротким пропускам вида «0.__ CFM», но длинная пометка
+   с ним раздувает таблицу и вместе с ней всю страницу на мобильном */
 .todo{color:var(--ink);font-weight:600;background:var(--fill);
   padding:2px var(--s8);border-radius:var(--s4);white-space:nowrap}
+.todo--wrap{white-space:normal;display:inline-block}
 
 /* спеки */
 .specs{width:100%;border-collapse:collapse;font-size:15px}
@@ -805,6 +813,77 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .legend>span{display:inline-flex;align-items:center;gap:var(--s8)}
 .legend .tag{height:26px;font-size:12px;padding:0 var(--s8)}
 
+/* ═══ Мобильное меню ═══
+   Панель справа на всю высоту. Группы раскрываются аккордеоном, потому что
+   9 категорий одним списком не помещаются в экран без прокрутки вслепую. */
+.mnav{position:fixed;inset:0;z-index:100;overflow:hidden}
+.mnav[hidden]{display:none}
+.mnav__scrim{position:absolute;inset:0;background:rgba(27,27,29,.42);
+  backdrop-filter:blur(2px);animation:mnavFade var(--dur) var(--ease)}
+.mnav__panel{
+  position:absolute;top:0;right:0;bottom:0;width:min(400px,100%);
+  background:var(--surface);display:flex;flex-direction:column;
+  box-shadow:-16px 0 40px rgba(27,27,29,.14);
+  animation:mnavIn 260ms var(--ease)
+}
+@keyframes mnavFade{from{opacity:0}to{opacity:1}}
+@keyframes mnavIn{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+
+.mnav__top{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s16);padding:var(--s12) var(--s16);border-bottom:1px solid var(--hair2);
+  min-height:60px;flex-shrink:0}
+.mnav__top .logo{min-height:44px}
+.mnav__x{width:44px;height:44px;border:0;background:var(--fill2);border-radius:50%;
+  color:var(--ink);display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.mnav__x:hover{background:var(--fill)}
+
+.mnav__body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:var(--s8) var(--s16) var(--s24)}
+
+/* пункт верхнего уровня: 56px - палец попадает не глядя */
+.mnav__l,.mnav__t{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s12);
+  width:100%;min-height:56px;padding:0;border:0;background:none;
+  font:inherit;font-size:18px;font-weight:600;color:var(--ink);
+  letter-spacing:-.012em;text-align:left;cursor:pointer;
+  border-bottom:1px solid var(--hair2)
+}
+.mnav__l--sec{font-size:16px;font-weight:500;color:var(--ink2);min-height:48px}
+.mnav__l[aria-current]{color:var(--ink)}
+.mnav__l[aria-current]::after{content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--ink);flex-shrink:0}
+.mnav__c{color:var(--ink2);transition:transform var(--dur) var(--ease);flex-shrink:0}
+.mnav__grp.open .mnav__c{transform:rotate(180deg)}
+
+/* раскрывающаяся часть: высота считается в JS, чтобы анимация была плавной */
+.mnav__p{overflow:hidden;height:0;transition:height 300ms var(--ease)}
+.mnav__p>div{padding:var(--s8) 0 var(--s16)}
+.mnav__p a{display:flex;align-items:center;gap:var(--s8);min-height:48px;
+  font-size:16px;color:var(--ink);padding-left:var(--s12)}
+.mnav__p a:active{background:var(--fill2)}
+.mnav__h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink3);margin:var(--s12) 0 var(--s4);padding-left:var(--s12)}
+.mnav__h:first-child{margin-top:var(--s4)}
+.mnav__b{display:inline-flex;align-items:center;height:20px;padding:0 var(--s8);
+  border-radius:var(--r-pill);background:var(--ink);color:#fff;
+  font-size:11px;font-weight:600;letter-spacing:.02em}
+.mnav__n{display:inline-flex;align-items:center;justify-content:center;
+  min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);
+  background:var(--ink);color:#fff;font-size:11px;font-weight:700}
+.mnav__cat{display:flex;align-items:center;gap:var(--s8);width:100%;min-height:48px;
+  margin-top:var(--s8);padding:0 var(--s12);border:1px solid var(--hair);
+  border-radius:var(--r-chip);background:var(--fill2);
+  font:inherit;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left}
+
+.mnav__sep{height:1px;background:var(--hair);margin:var(--s16) 0}
+.mnav__geo{margin-top:var(--s24);padding-top:var(--s16);border-top:1px solid var(--hair2);
+  font-size:13px;line-height:1.5;color:var(--ink2)}
+.mnav__geo b{color:var(--ink);font-weight:600}
+
+.mnav__foot{flex-shrink:0;display:flex;flex-direction:column;gap:var(--s8);
+  padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom));
+  border-top:1px solid var(--hair2);background:var(--surface)}
+
 /* ── Модалка: каталог по email ── */
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:var(--s20)}
 /* display:grid перебивает [hidden], поэтому скрытие объявляем явно */
@@ -823,7 +902,11 @@ h1,h2,h3{scroll-margin-top:calc(var(--header-h) + var(--s24))}
 .ftr__btn{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;
   text-align:left}
 .ftr__btn:hover{color:var(--ink)}
-button.alink{background:none;cursor:pointer}
+/* кнопка в роли ссылки: у button есть своя рамка по умолчанию, её надо снять,
+   иначе остаётся только нижняя граница от .alink */
+button.alink{background:none;cursor:pointer;border:0;border-bottom:1px solid var(--hair);
+  padding:0 0 2px;font:inherit;color:var(--ink)}
+button.alink:hover{border-color:var(--ink)}
 
 .msticky{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:var(--s8);
   padding:var(--s12) var(--s16) calc(var(--s12) + env(safe-area-inset-bottom));
@@ -854,6 +937,10 @@ button.alink{background:none;cursor:pointer}
   .pdp__side{position:static}
   .incl{grid-template-columns:1fr;gap:var(--s20)}
   .burger{display:flex}
+  /* .nav скрыт, и его margin-left:auto перестал работать - переносим на зону действий,
+     иначе бургер уезжает к центру экрана */
+  .hdr__act{margin-left:auto}
+  .hdr__sep{display:none}
   .hero__in,.chero__in{grid-template-columns:1fr;gap:var(--s32)}
   .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -863,7 +950,7 @@ button.alink{background:none;cursor:pointer}
 }
 @media (max-width:720px){
   :root{--header-h:60px}
-  .wrap{padding-inline:var(--s20)}
+  .wrap{padding-inline:var(--s16)}
   .sec{padding-block:var(--s40)}
   .sec--sm{padding-block:var(--s32)}
   .hero{padding-block:var(--s24) var(--s40)}
