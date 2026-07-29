@@ -1009,6 +1009,42 @@ button.alink:hover{border-color:var(--ink)}
   .modal__box{padding:var(--s20)}
 }
 
+/* ═══ Мобильные доработки ═══ */
+@media (max-width:720px){
+
+  /* 1. Таблица сравнения: первый столбец с названием параметра прилипает.
+     Без него при горизонтальном скролле видишь значения и не знаешь, чьи они. */
+  .tscroll{position:relative}
+  .cmp th:first-child,
+  .cmp td:first-child{
+    position:sticky;left:0;z-index:2;
+    background:var(--canvas);
+    box-shadow:1px 0 0 var(--hair);
+    min-width:132px;max-width:132px;
+    white-space:normal
+  }
+  /* строки с заливкой не должны просвечивать сквозь липкую ячейку */
+  .cmp tbody tr:nth-child(even) th:first-child,
+  .cmp tbody tr:nth-child(even) td:first-child{background:var(--fill2)}
+  .cmp thead th:first-child{background:var(--canvas);z-index:3}
+
+  /* 2. Панель фильтров и сортировки прилипает под шапкой.
+     На длинном листинге иначе приходится скроллить наверх ради сортировки. */
+  .fbar{
+    position:sticky;top:var(--header-h);z-index:50;
+    margin-inline:calc(var(--s16) * -1);
+    padding:var(--s12) var(--s16);
+    background:rgba(240,239,237,.94);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--hair2)
+  }
+  .chips{margin-top:var(--s12)}
+
+  /* 3. Sticky-кнопки внизу - по задаче страницы, а не одинаковые везде.
+     В листинге они мешают и ничего не решают: человек выбирает товар. */
+  body.no-msticky .msticky{display:none}
+  body.no-msticky{padding-bottom:0}
+}
+
 </style>
 </head>
 <body data-page="faq">
@@ -1021,7 +1057,7 @@ button.alink:hover{border-color:var(--ink)}
   </div>
   <nav class="topbar__nav" aria-label="Secondary">
     <a href="builders-wireframe.html" data-nav="builders">For builders</a>
-    <a href="#">About</a>
+    <a href="about-wireframe.html" data-nav="about">About</a>
     <a href="faq-wireframe.html" data-nav="faq">FAQ</a>
     <a href="contact-wireframe.html" data-nav="contact">Contact</a>
   </nav>
@@ -1152,7 +1188,7 @@ button.alink:hover{border-color:var(--ink)}
       <li><a href="#">Delivery &amp; returns</a></li>
       <li><button class="ftr__btn" type="button" data-cat-form="all 9 catalogs">Catalogs (9 PDF)</button></li></ul></div>
     <div><h4>Company</h4><ul>
-      <li><a href="#">About us</a></li>
+      <li><a href="about-wireframe.html">About us</a></li>
       <li><a href="projects-wireframe.html">Projects</a></li>
       <li><a href="builders-wireframe.html">For builders</a></li>
       <li><a href="faq-wireframe.html">FAQ</a></li>
@@ -1234,7 +1270,7 @@ button.alink:hover{border-color:var(--ink)}
 
       <a class="mnav__l mnav__l--sec" href="builders-wireframe.html" data-nav="builders">For builders</a>
       <a class="mnav__l mnav__l--sec" href="contact-wireframe.html#showroom">Showroom</a>
-      <a class="mnav__l mnav__l--sec" href="#">About</a>
+      <a class="mnav__l mnav__l--sec" href="about-wireframe.html" data-nav="about">About</a>
       <a class="mnav__l mnav__l--sec" href="faq-wireframe.html" data-nav="faq">FAQ</a>
       <a class="mnav__l mnav__l--sec" href="contact-wireframe.html" data-nav="contact">Contact</a>
 
@@ -1276,6 +1312,13 @@ button.alink:hover{border-color:var(--ink)}
         <input id="cat-call" type="checkbox">
         <span>Also have someone call me about my project</span>
       </label>
+      <!-- поле появляется только когда чекбокс отмечен: пока не просят звонка,
+           телефон спрашивать не за что -->
+      <div class="field" id="cat-tel-wrap" hidden>
+        <label for="cat-tel">Phone <i>*</i></label>
+        <input id="cat-tel" type="tel" autocomplete="tel" placeholder="(___) ___-____">
+        <span class="err">We need a number to call you back</span>
+      </div>
       <button class="btn btn--primary btn--full" type="submit" id="cat-submit">Send me the PDF</button>
       <p class="fnote">Sent within a minute. No spam, no reselling your data.</p>
     </form>
@@ -1450,12 +1493,24 @@ var W = (function(){
         form=document.getElementById('catform'),
         done=document.getElementById('catdone'),
         mail=document.getElementById('cat-mail'),
+        call=document.getElementById('cat-call'),
+        telw=document.getElementById('cat-tel-wrap'),
+        tel=document.getElementById('cat-tel'),
         last=null;
+
+    /* просят перезвонить - значит нужен номер */
+    function syncTel(){
+      telw.hidden=!call.checked;
+      if(call.checked) setTimeout(function(){tel.focus();},60);
+      else telw.classList.remove('bad');
+    }
+    call.addEventListener('change',syncTel);
     function open(label,trigger){
       last=trigger;
       what.textContent=label||'all 9 catalogs';
       form.style.display=''; done.style.display='none';
       form.querySelectorAll('.bad').forEach(function(f){f.classList.remove('bad');});
+      call.checked=false; syncTel();
       box.hidden=false; document.body.style.overflow='hidden';
       setTimeout(function(){mail.focus();},50);
     }
@@ -1473,12 +1528,18 @@ var W = (function(){
       e.preventDefault();
       var ok=/.+@.+\..+/.test(mail.value.trim());
       mail.closest('.field').classList.toggle('bad',!ok);
+      var telOk=!call.checked || tel.value.replace(/\D/g,'').length>=10;
+      telw.classList.toggle('bad',!telOk);
       if(!ok){mail.focus();return;}
+      if(!telOk){tel.focus();return;}
       var b=document.getElementById('cat-submit');
       b.disabled=true;b.style.opacity='.6';b.textContent='Sending…';
       setTimeout(function(){
         form.style.display='none'; done.style.display='block';
         b.disabled=false;b.style.opacity='';b.textContent='Send me the PDF';
+        done.querySelector('p').innerHTML = call.checked
+          ? 'Check your inbox - and we\'ll call you within one business day.'
+          : 'Check your inbox - if it isn\'t there in five minutes, look in Promotions.';
       },600);
     });
   }
